@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Type Hints on Frederico Gago – Tech Blog</title>
-    <link>https://frederico-gago.github.io/tags/type-hints/</link>
+    <link>https://fredericogago.github.io/frederico-gago/tags/type-hints/</link>
     <description>Recent content in Type Hints on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 24 Jun 2025 09:35:50 +0100</lastBuildDate>
-    <atom:link href="https://frederico-gago.github.io/tags/type-hints/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fredericogago.github.io/frederico-gago/tags/type-hints/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My First Post</title>
-      <link>https://frederico-gago.github.io/posts/python-3-13-overview/</link>
+      <link>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</link>
       <pubDate>Tue, 24 Jun 2025 09:35:50 +0100</pubDate>
-      <guid>https://frederico-gago.github.io/posts/python-3-13-overview/</guid>
+      <guid>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</guid>
       <description>A technical blog post exploring Python 3.13 features.</description>
     </item>
   </channel>
