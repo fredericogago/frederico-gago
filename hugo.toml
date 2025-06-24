@@ -1,0 +1,47 @@
+baseURL = "https://frederico-gago.github.io/"
+languageCode = "en-us"
+title = "Frederico Gago – Tech Blog"
+theme = "PaperMod"
+publishDir = "docs"
+enableRobotsTXT = true
+canonifyURLs = true
+
+[params]
+  env = "production"
+  description = "Technical blog on Python 3.13, Clean Architecture, and modern software engineering practices."
+  keywords = ["Python", "Clean Architecture", "Type Hints", "SOLID", "FastAPI", "Portfólio"]
+  author = "Frederico Gago"
+
+  ShowReadingTime = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  defaultTheme = "auto"
+  mainSections = ["posts"]
+
+  socialIcons = [
+    { name = "github", url = "https://github.com/fredericogago" },
+    { name = "linkedin", url = "https://www.linkedin.com/in/frederico-gago-5849281aa" }
+  ]
+
+  [params.profileMode]
+    enabled = true
+    name = "Frederico Gago"
+    subtitle = "Software Developer focused on Clean Architecture and Python."
+    imageUrl = "images/profile.jpg"
+    imageTitle = "Profile picture"
+
+    [[params.profileMode.buttons]]
+      name = "Blog"
+      url = "/posts"
+
+    [[params.profileMode.buttons]]
+      name = "GitHub"
+      url = "https://github.com/fredericogago"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    noClasses = false
