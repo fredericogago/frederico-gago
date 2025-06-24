@@ -11,6 +11,7 @@ canonifyURLs = true
   description = "Technical blog on Python 3.13, Clean Architecture, and modern software engineering practices."
   keywords = ["Python", "Clean Architecture", "Type Hints", "SOLID", "FastAPI", "Portfólio"]
   author = "Frederico Gago"
+  uglyURLs = true
 
   ShowReadingTime = true
   ShowPostNavLinks = true
