@@ -1,5 +1,7 @@
 +++
-title = "About Me"
+title = 'About'
+date = 2025-06-24T10:22:07+01:00
+draft = false
 
 [menu.main]
   weight = 1

@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fredericogago.github.io/frederico-gago/about/</loc>
+    <lastmod>2025-06-24T10:22:07+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/</loc>
+    <lastmod>2025-06-24T10:22:07+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/contact/</loc>
+    <lastmod>2025-06-24T10:21:02+01:00</lastmod>
+  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/posts/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/categories/</loc>
-    <lastmod>2025-06-24T09:35:50+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</loc>
@@ -25,10 +31,6 @@
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/type-hints/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/about/</loc>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/contact/</loc>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/portfolio/</loc>
   </url>
