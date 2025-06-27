@@ -2,9 +2,6 @@
 title = 'About'
 date = 2025-06-24T10:22:07+01:00
 draft = false
-
-[menu.main]
-  weight = 1
 +++
 
 Hi, I'm **Frederico Gago**, a software developer focused on Python 3.13, Clean Architecture, SOLID principles, and scalable systems.

@@ -1,17 +1,15 @@
-baseURL = "https://fredericogago.github.io/frederico-gago/"
+baseURL = "https://fredericogago.github.io/"
 languageCode = "en-us"
 title = "Frederico Gago – Tech Blog"
 theme = "PaperMod"
 publishDir = "docs"
 enableRobotsTXT = true
-canonifyURLs = true
 
 [params]
   env = "production"
   description = "Technical blog on Python 3.13, Clean Architecture, and modern software engineering practices."
   keywords = ["Python", "Clean Architecture", "Type Hints", "SOLID", "FastAPI", "Portfólio"]
   author = "Frederico Gago"
-  uglyURLs = true
 
   ShowReadingTime = true
   ShowPostNavLinks = true
@@ -19,6 +17,7 @@ canonifyURLs = true
   ShowCodeCopyButtons = true
   defaultTheme = "auto"
   mainSections = ["posts"]
+  ShowMenu = true
 
   socialIcons = [
     { name = "github", url = "https://github.com/fredericogago" },
@@ -39,6 +38,31 @@ canonifyURLs = true
     [[params.profileMode.buttons]]
       name = "GitHub"
       url = "https://github.com/fredericogago"
+
+[menu]
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "portfolio"
+    name = "Portfolio"
+    url = "/portfolio/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "contact"
+    name = "Contact"
+    url = "/contact/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "blog"
+    name = "Blog"
+    url = "/posts/"
+    weight = 4
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]

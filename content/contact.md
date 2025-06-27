@@ -2,9 +2,6 @@
 title = "Contact"
 date = 2025-06-24T10:21:02+01:00
 draft = false
-
-[menu.main]
-  weight = 2
 +++
 
 You can reach me at:

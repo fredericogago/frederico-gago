@@ -1,9 +1,7 @@
 +++
 title = "Portfolio"
 description = "Selected projects demonstrating my expertise in clean software design."
-
-[menu.main]
-  weight = 3
+draft = false
 +++
 
 Here are some projects I've worked on:
