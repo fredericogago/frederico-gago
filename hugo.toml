@@ -1,9 +1,11 @@
-baseURL = "https://fredericogago.github.io/"
+baseURL = "https://fredericogago.github.io/frederico-gago/"
 languageCode = "en-us"
 title = "Frederico Gago – Tech Blog"
 theme = "PaperMod"
 publishDir = "docs"
 enableRobotsTXT = true
+canonifyURLs = true
+relativeURLs = false
 
 [params]
   env = "production"
@@ -43,25 +45,25 @@ enableRobotsTXT = true
   [[menu.main]]
     identifier = "about"
     name = "About"
-    url = "/about/"
+    url = "/frederico-gago/about/"
     weight = 1
 
   [[menu.main]]
     identifier = "portfolio"
     name = "Portfolio"
-    url = "/portfolio/"
+    url = "/frederico-gago/portfolio/"
     weight = 2
 
   [[menu.main]]
     identifier = "contact"
     name = "Contact"
-    url = "/contact/"
+    url = "/frederico-gago/contact/"
     weight = 3
 
   [[menu.main]]
     identifier = "blog"
     name = "Blog"
-    url = "/posts/"
+    url = "/frederico-gago/posts/"
     weight = 4
 
 [outputs]

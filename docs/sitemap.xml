@@ -2,36 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/about/</loc>
     <lastmod>2025-06-24T10:22:07+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/</loc>
     <lastmod>2025-06-24T10:22:07+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/contact/</loc>
     <lastmod>2025-06-24T10:21:02+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/posts/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/python-3-13-overview/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/python/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/python/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/python/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/type-hints/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/type-hints/</loc>
     <lastmod>2025-06-24T09:35:50+01:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/portfolio/</loc>
+    <loc>https://fredericogago.github.io/frederico-gago/portfolio/</loc>
   </url>
 </urlset>
