@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Python on Frederico Gago – Tech Blog</title>
-    <link>https://fredericogago.github.io/frederico-gago/tags/python/</link>
-    <description>Recent content in Python on Frederico Gago – Tech Blog</description>
+    <title>Interview Prep on Frederico Gago – Tech Blog</title>
+    <link>https://fredericogago.github.io/frederico-gago/tags/interview-prep/</link>
+    <description>Recent content in Interview Prep on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 06 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://fredericogago.github.io/frederico-gago/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fredericogago.github.io/frederico-gago/tags/interview-prep/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Is It a Palindrome Number? Three Ways to Solve It Without Converting to String</title>
       <link>https://fredericogago.github.io/frederico-gago/posts/2025-07-06-palindrome-number/</link>
       <pubDate>Sun, 06 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://fredericogago.github.io/frederico-gago/posts/2025-07-06-palindrome-number/</guid>
       <description>I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.</description>
-    </item>
-    <item>
-      <title>My First Post</title>
-      <link>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</link>
-      <pubDate>Tue, 24 Jun 2025 09:35:50 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</guid>
-      <description>A technical blog post exploring Python 3.13 features.</description>
     </item>
   </channel>
 </rss>

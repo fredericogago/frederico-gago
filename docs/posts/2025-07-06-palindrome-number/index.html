@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Is It a Palindrome Number? Three Ways to Solve It Without Converting to String | Frederico Gago – Tech Blog</title>
+<meta name="keywords" content="Python, LeetCode, Clean Code, Algorithms, Interview Prep">
+<meta name="description" content="I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.">
+<meta name="author" content="Frederico Gago">
+<link rel="canonical" href="https://fredericogago.github.io/frederico-gago/posts/2025-07-06-palindrome-number/">
+<link crossorigin="anonymous" href="https://fredericogago.github.io/frederico-gago/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://fredericogago.github.io/frederico-gago/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://fredericogago.github.io/frederico-gago/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://fredericogago.github.io/frederico-gago/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://fredericogago.github.io/frederico-gago/apple-touch-icon.png">
+<link rel="mask-icon" href="https://fredericogago.github.io/frederico-gago/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://fredericogago.github.io/frederico-gago/posts/2025-07-06-palindrome-number/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://fredericogago.github.io/frederico-gago/posts/2025-07-06-palindrome-number/">
+  <meta property="og:site_name" content="Frederico Gago – Tech Blog">
+  <meta property="og:title" content="Is It a Palindrome Number? Three Ways to Solve It Without Converting to String">
+  <meta property="og:description" content="I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-06T00:00:00+00:00">
+    <meta property="article:modified_time" content="2025-07-06T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="LeetCode">
+    <meta property="article:tag" content="Clean Code">
+    <meta property="article:tag" content="Algorithms">
+    <meta property="article:tag" content="Interview Prep">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Is It a Palindrome Number? Three Ways to Solve It Without Converting to String">
+<meta name="twitter:description" content="I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Is It a Palindrome Number? Three Ways to Solve It Without Converting to String",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/2025-07-06-palindrome-number/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Is It a Palindrome Number? Three Ways to Solve It Without Converting to String",
+  "name": "Is It a Palindrome Number? Three Ways to Solve It Without Converting to String",
+  "description": "I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.",
+  "keywords": [
+    "Python", "LeetCode", "Clean Code", "Algorithms", "Interview Prep"
+  ],
+  "articleBody": "🧩 The Problem Given an integer x, determine whether it’s a palindrome — that is, whether it reads the same forwards and backwards.\n🔗 Problem Link: LeetCode 9. Palindrome Number\nExamples Input: x = 121 → Output: True Input: x = -121 → Output: False Input: x = 10 → Output: False Bonus: Can you solve it without converting the integer to a string?\n🔍 The Three Approaches I Explored 1. 💡 Direct Solution with String Conversion def isPalindrome(x: int) -\u003e bool: return str(x) == str(x)[::-1] Simple and fast (4 ms on LeetCode) But does not satisfy the follow-up constraint of avoiding strings 2. 📐 Mathematical Reversal Using log10 and Closed-Form Formula Inspired by this StackExchange post, this solution uses a formula to reverse digits without strings:\nreverse(x) = x × 10ⁿ − 99 × Σₖ floor(x / 10ᵏ) × 10ⁿ⁻ᵏ ✅ No string conversion ✅ Mathematically elegant ⚠️ Slightly slower due to log10() and exponentiation ⚠️ Can suffer from floating-point rounding issues 3. ⚙️ Iterative Arithmetic Reversal (Preferred) def reverse(x: int) -\u003e int: result = 0 while x \u003e 0: result = result * 10 + x % 10 x //= 10 return result ✅ No strings ✅ Fast and stable ✅ Easy to understand and debug ⏱️ Benchmark Results Tested on values like 11, 101, 1001, ..., 10000001\nIterative method: ~0.000009 seconds Math (log10) method: ~0.000033 seconds ✅ Both produce the correct result 📌 Iterative is about 3.7× faster and more robust for real-world use\n🧠 What I Learned How to reverse integers purely with arithmetic How to benchmark small Python functions using time.perf_counter() That elegance can sometimes come at a performance cost How to choose the right tradeoff between readability, correctness, and efficiency 🌍 Real-World Applications Palindrome logic pops up in places like:\nInput validation (e.g. palindromic IDs) Data compression using symmetry Embedded systems that don’t allow string types Constraints in coding interviews or systems-level code (like drivers/firmware) 📂 Code Repository You can find my full source code for this solution on GitHub:\n📦 Repo: github.com/fredericogago/leetcode 📄 File: Palindrome Number.py ✍️ Final Thoughts Solving the same problem in multiple ways helps me grow not only as a developer, but as a technical communicator. Being able to solve is great. Being able to explain clearly — that’s where the real value is.\n“Hope it helps! I’m learning to write more elegant solutions with Python 3.13 and Clean Code.” 🚀\n👨‍💻 Like this post? Let’s connect on LinkedIn or check out more on GitHub!\n",
+  "wordCount" : "415",
+  "inLanguage": "en",
+  "datePublished": "2025-07-06T00:00:00Z",
+  "dateModified": "2025-07-06T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Frederico Gago"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://fredericogago.github.io/frederico-gago/posts/2025-07-06-palindrome-number/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Frederico Gago – Tech Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://fredericogago.github.io/frederico-gago/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://fredericogago.github.io/frederico-gago/" accesskey="h" title="Frederico Gago – Tech Blog (Alt + H)">Frederico Gago – Tech Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/portfolio/" title="Portfolio">
+                    <span>Portfolio</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://fredericogago.github.io/frederico-gago/">Home</a>&nbsp;»&nbsp;<a href="https://fredericogago.github.io/frederico-gago/posts/">Blog</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Is It a Palindrome Number? Three Ways to Solve It Without Converting to String
+    </h1>
+    <div class="post-description">
+      I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.
+    </div>
+    <div class="post-meta"><span title='2025-07-06 00:00:00 +0000 UTC'>July 6, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Frederico Gago
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="-the-problem">🧩 The Problem<a hidden class="anchor" aria-hidden="true" href="#-the-problem">#</a></h2>
+<p>Given an integer <code>x</code>, determine whether it&rsquo;s a palindrome — that is, whether it reads the same forwards and backwards.</p>
+<p>🔗 Problem Link: <a href="https://leetcode.com/problems/palindrome-number/description/">LeetCode 9. Palindrome Number</a></p>
+<h3 id="examples">Examples<a hidden class="anchor" aria-hidden="true" href="#examples">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Input:  x = 121   → Output: True
+</span></span><span class="line"><span class="cl">Input:  x = -121  → Output: False
+</span></span><span class="line"><span class="cl">Input:  x = 10    → Output: False
+</span></span></code></pre></div><blockquote>
+<p>Bonus: Can you solve it <strong>without converting the integer to a string</strong>?</p></blockquote>
+<hr>
+<h2 id="-the-three-approaches-i-explored">🔍 The Three Approaches I Explored<a hidden class="anchor" aria-hidden="true" href="#-the-three-approaches-i-explored">#</a></h2>
+<h3 id="1--direct-solution-with-string-conversion">1. 💡 Direct Solution with String Conversion<a hidden class="anchor" aria-hidden="true" href="#1--direct-solution-with-string-conversion">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span></code></pre></div><ul>
+<li>Simple and fast (4 ms on LeetCode)</li>
+<li>But does <strong>not</strong> satisfy the follow-up constraint of avoiding strings</li>
+</ul>
+<hr>
+<h3 id="2--mathematical-reversal-using-log10-and-closed-form-formula">2. 📐 Mathematical Reversal Using <code>log10</code> and Closed-Form Formula<a hidden class="anchor" aria-hidden="true" href="#2--mathematical-reversal-using-log10-and-closed-form-formula">#</a></h3>
+<p>Inspired by <a href="https://math.stackexchange.com/q/480068">this StackExchange post</a>, this solution uses a formula to reverse digits without strings:</p>
+<pre tabindex="0"><code class="language-math" data-lang="math">reverse(x) = x × 10ⁿ − 99 × Σₖ floor(x / 10ᵏ) × 10ⁿ⁻ᵏ
+</code></pre><ul>
+<li>✅ No string conversion</li>
+<li>✅ Mathematically elegant</li>
+<li>⚠️ Slightly slower due to <code>log10()</code> and exponentiation</li>
+<li>⚠️ Can suffer from floating-point rounding issues</li>
+</ul>
+<hr>
+<h3 id="3--iterative-arithmetic-reversal-preferred">3. ⚙️ Iterative Arithmetic Reversal (Preferred)<a hidden class="anchor" aria-hidden="true" href="#3--iterative-arithmetic-reversal-preferred">#</a></h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">+</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">//=</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span>
+</span></span></code></pre></div><ul>
+<li>✅ No strings</li>
+<li>✅ Fast and stable</li>
+<li>✅ Easy to understand and debug</li>
+</ul>
+<hr>
+<h2 id="-benchmark-results">⏱️ Benchmark Results<a hidden class="anchor" aria-hidden="true" href="#-benchmark-results">#</a></h2>
+<p>Tested on values like <code>11, 101, 1001, ..., 10000001</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Iterative method:    ~0.000009 seconds
+</span></span><span class="line"><span class="cl">Math (log10) method: ~0.000033 seconds
+</span></span></code></pre></div><p>✅ Both produce the correct result
+📌 <strong>Iterative</strong> is about <strong>3.7× faster</strong> and more robust for real-world use</p>
+<hr>
+<h2 id="-what-i-learned">🧠 What I Learned<a hidden class="anchor" aria-hidden="true" href="#-what-i-learned">#</a></h2>
+<ul>
+<li>How to reverse integers purely with arithmetic</li>
+<li>How to benchmark small Python functions using <code>time.perf_counter()</code></li>
+<li>That <strong>elegance</strong> can sometimes come at a <strong>performance cost</strong></li>
+<li>How to choose the right tradeoff between <strong>readability</strong>, <strong>correctness</strong>, and <strong>efficiency</strong></li>
+</ul>
+<hr>
+<h2 id="-real-world-applications">🌍 Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#-real-world-applications">#</a></h2>
+<p>Palindrome logic pops up in places like:</p>
+<ul>
+<li>Input validation (e.g. palindromic IDs)</li>
+<li>Data compression using symmetry</li>
+<li>Embedded systems that don’t allow string types</li>
+<li>Constraints in coding interviews or systems-level code (like drivers/firmware)</li>
+</ul>
+<hr>
+<h2 id="-code-repository">📂 Code Repository<a hidden class="anchor" aria-hidden="true" href="#-code-repository">#</a></h2>
+<p>You can find my full source code for this solution on GitHub:</p>
+<ul>
+<li>📦 Repo: <a href="https://github.com/fredericogago/leetcode.git">github.com/fredericogago/leetcode</a></li>
+<li>📄 File: <a href="https://github.com/fredericogago/leetcode/blob/main/src/leetcode/editor/en/%5B9%5DPalindrome%20Number.py"><code>Palindrome Number.py</code></a></li>
+</ul>
+<hr>
+<h2 id="-final-thoughts">✍️ Final Thoughts<a hidden class="anchor" aria-hidden="true" href="#-final-thoughts">#</a></h2>
+<p>Solving the same problem in multiple ways helps me grow not only as a developer, but as a <strong>technical communicator</strong>. Being able to solve is great. Being able to <strong>explain clearly</strong> — that’s where the real value is.</p>
+<blockquote>
+<p><em>&ldquo;Hope it helps! I’m learning to write more elegant solutions with Python 3.13 and Clean Code.&rdquo;</em> 🚀</p></blockquote>
+<hr>
+<p>👨‍💻 Like this post?
+Let’s connect on <a href="https://www.linkedin.com/in/frederico-gago-5849281aa">LinkedIn</a>
+or check out more on <a href="https://github.com/fredericogago">GitHub</a>!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/python/">Python</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/leetcode/">LeetCode</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/clean-code/">Clean Code</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/algorithms/">Algorithms</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/interview-prep/">Interview Prep</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/">
+    <span class="title">Next »</span>
+    <br>
+    <span>My First Post</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://fredericogago.github.io/frederico-gago/">Frederico Gago – Tech Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

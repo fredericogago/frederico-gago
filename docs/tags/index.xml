@@ -6,12 +6,40 @@
     <description>Recent content in Tags on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Jun 2025 09:35:50 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 06 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algorithms</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/algorithms/</link>
+      <pubDate>Sun, 06 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Clean Code</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/clean-code/</link>
+      <pubDate>Sun, 06 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/clean-code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Interview Prep</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/interview-prep/</link>
+      <pubDate>Sun, 06 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/interview-prep/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LeetCode</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/leetcode/</link>
+      <pubDate>Sun, 06 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/leetcode/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Python</title>
       <link>https://fredericogago.github.io/frederico-gago/tags/python/</link>
-      <pubDate>Tue, 24 Jun 2025 09:35:50 +0100</pubDate>
+      <pubDate>Sun, 06 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://fredericogago.github.io/frederico-gago/tags/python/</guid>
       <description></description>
     </item>
