@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/frederico-gago/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=frederico-gago/livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Is It a Palindrome Number? Three Ways to Solve It Without Converting to String | Frederico Gago – Tech Blog</title>
-<meta name="keywords" content="Python, LeetCode, Clean Code, Algorithms, Interview Prep">
+<meta name="keywords" content="python, leetcode, clean code, algorithms, interview prep">
 <meta name="description" content="I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.">
 <meta name="author" content="Frederico Gago">
-<link rel="canonical" href="http://localhost:1313/frederico-gago/posts/2025-07-06-palindrome-number/">
-<link crossorigin="anonymous" href="http://localhost:1313/frederico-gago/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/frederico-gago/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/frederico-gago/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/frederico-gago/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/frederico-gago/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/frederico-gago/safari-pinned-tab.svg">
+<link rel="canonical" href="https://fredericogago.github.io/frederico-gago/posts/palindrome-number/">
+<link crossorigin="anonymous" href="https://fredericogago.github.io/frederico-gago/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://fredericogago.github.io/frederico-gago/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://fredericogago.github.io/frederico-gago/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://fredericogago.github.io/frederico-gago/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://fredericogago.github.io/frederico-gago/apple-touch-icon.png">
+<link rel="mask-icon" href="https://fredericogago.github.io/frederico-gago/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/frederico-gago/posts/2025-07-06-palindrome-number/">
+<link rel="alternate" hreflang="en" href="https://fredericogago.github.io/frederico-gago/posts/palindrome-number/">
 <noscript>
     <style>
         #theme-toggle,
@@ -55,21 +55,23 @@
         }
 
     </style>
-</noscript><meta property="og:url" content="http://localhost:1313/frederico-gago/posts/2025-07-06-palindrome-number/">
+</noscript><meta property="og:url" content="https://fredericogago.github.io/frederico-gago/posts/palindrome-number/">
   <meta property="og:site_name" content="Frederico Gago – Tech Blog">
   <meta property="og:title" content="Is It a Palindrome Number? Three Ways to Solve It Without Converting to String">
   <meta property="og:description" content="I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2025-07-06T00:00:00+00:00">
-    <meta property="article:modified_time" content="2025-07-06T00:00:00+00:00">
+    <meta property="article:published_time" content="2025-07-06T16:00:00+01:00">
+    <meta property="article:modified_time" content="2025-07-06T16:00:00+01:00">
     <meta property="article:tag" content="Python">
-    <meta property="article:tag" content="LeetCode">
+    <meta property="article:tag" content="Leetcode">
     <meta property="article:tag" content="Clean Code">
     <meta property="article:tag" content="Algorithms">
     <meta property="article:tag" content="Interview Prep">
-<meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://fredericogago.github.io/frederico-gago/images/cover/Python-palindrome.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fredericogago.github.io/frederico-gago/images/cover/Python-palindrome.png">
 <meta name="twitter:title" content="Is It a Palindrome Number? Three Ways to Solve It Without Converting to String">
 <meta name="twitter:description" content="I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.">
 
@@ -83,13 +85,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Blog",
-      "item": "http://localhost:1313/frederico-gago/posts/"
+      "item": "https://fredericogago.github.io/frederico-gago/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "Is It a Palindrome Number? Three Ways to Solve It Without Converting to String",
-      "item": "http://localhost:1313/frederico-gago/posts/2025-07-06-palindrome-number/"
+      "item": "https://fredericogago.github.io/frederico-gago/posts/palindrome-number/"
     }
   ]
 }
@@ -102,27 +104,27 @@
   "name": "Is It a Palindrome Number? Three Ways to Solve It Without Converting to String",
   "description": "I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.",
   "keywords": [
-    "Python", "LeetCode", "Clean Code", "Algorithms", "Interview Prep"
+    "python", "leetcode", "clean code", "algorithms", "interview prep"
   ],
   "articleBody": "🧩 The Problem Given an integer x, determine whether it’s a palindrome — that is, whether it reads the same forwards and backwards.\n🔗 Problem Link: LeetCode 9. Palindrome Number\nExamples Input: x = 121 → Output: True Input: x = -121 → Output: False Input: x = 10 → Output: False Bonus: Can you solve it without converting the integer to a string?\n🔍 The Three Approaches I Explored 1. 💡 Direct Solution with String Conversion def isPalindrome(x: int) -\u003e bool: return str(x) == str(x)[::-1] Simple and fast (4 ms on LeetCode) But does not satisfy the follow-up constraint of avoiding strings 2. 📐 Mathematical Reversal Using log10 and Closed-Form Formula Inspired by this StackExchange post, this solution uses a formula to reverse digits without strings:\nreverse(x) = x × 10ⁿ − 99 × Σₖ floor(x / 10ᵏ) × 10ⁿ⁻ᵏ ✅ No string conversion ✅ Mathematically elegant ⚠️ Slightly slower due to log10() and exponentiation ⚠️ Can suffer from floating-point rounding issues 3. ⚙️ Iterative Arithmetic Reversal (Preferred) def reverse(x: int) -\u003e int: result = 0 while x \u003e 0: result = result * 10 + x % 10 x //= 10 return result ✅ No strings ✅ Fast and stable ✅ Easy to understand and debug ⏱️ Benchmark Results Tested on values like 11, 101, 1001, ..., 10000001\nIterative method: ~0.000009 seconds Math (log10) method: ~0.000033 seconds ✅ Both produce the correct result 📌 Iterative is about 3.7× faster and more robust for real-world use\n🧠 What I Learned How to reverse integers purely with arithmetic How to benchmark small Python functions using time.perf_counter() That elegance can sometimes come at a performance cost How to choose the right tradeoff between readability, correctness, and efficiency 🌍 Real-World Applications Palindrome logic pops up in places like:\nInput validation (e.g. palindromic IDs) Data compression using symmetry Embedded systems that don’t allow string types Constraints in coding interviews or systems-level code (like drivers/firmware) 📂 Code Repository You can find my full source code for this solution on GitHub:\n📦 Repo: github.com/fredericogago/leetcode 📄 File: Palindrome Number.py ✍️ Final Thoughts Solving the same problem in multiple ways helps me grow not only as a developer, but as a technical communicator. Being able to solve is great. Being able to explain clearly — that’s where the real value is.\n“Hope it helps! I’m learning to write more elegant solutions with Python 3.13 and Clean Code.” 🚀\n👨‍💻 Like this post? Let’s connect on LinkedIn or check out more on GitHub!\n",
   "wordCount" : "415",
   "inLanguage": "en",
-  "datePublished": "2025-07-06T00:00:00Z",
-  "dateModified": "2025-07-06T00:00:00Z",
+  "image":"https://fredericogago.github.io/frederico-gago/images/cover/Python-palindrome.png","datePublished": "2025-07-06T16:00:00+01:00",
+  "dateModified": "2025-07-06T16:00:00+01:00",
   "author":{
     "@type": "Person",
     "name": "Frederico Gago"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://localhost:1313/frederico-gago/posts/2025-07-06-palindrome-number/"
+    "@id": "https://fredericogago.github.io/frederico-gago/posts/palindrome-number/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Frederico Gago – Tech Blog",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://localhost:1313/frederico-gago/favicon.ico"
+      "url": "https://fredericogago.github.io/frederico-gago/favicon.ico"
     }
   }
 }
@@ -144,7 +146,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/frederico-gago/" accesskey="h" title="Frederico Gago – Tech Blog (Alt + H)">Frederico Gago – Tech Blog</a>
+            <a href="https://fredericogago.github.io/frederico-gago/" accesskey="h" title="Frederico Gago – Tech Blog (Alt + H)">Frederico Gago – Tech Blog</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -170,22 +172,22 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/frederico-gago/about/" title="About">
+                <a href="https://fredericogago.github.io/frederico-gago/about/" title="About">
                     <span>About</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/frederico-gago/portfolio/" title="Portfolio">
+                <a href="https://fredericogago.github.io/frederico-gago/portfolio/" title="Portfolio">
                     <span>Portfolio</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/frederico-gago/contact/" title="Contact">
+                <a href="https://fredericogago.github.io/frederico-gago/contact/" title="Contact">
                     <span>Contact</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/frederico-gago/posts/" title="Blog">
+                <a href="https://fredericogago.github.io/frederico-gago/posts/" title="Blog">
                     <span>Blog</span>
                 </a>
             </li>
@@ -196,17 +198,21 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="http://localhost:1313/frederico-gago/">Home</a>&nbsp;»&nbsp;<a href="http://localhost:1313/frederico-gago/posts/">Blog</a></div>
+    <div class="breadcrumbs"><a href="https://fredericogago.github.io/frederico-gago/">Home</a>&nbsp;»&nbsp;<a href="https://fredericogago.github.io/frederico-gago/posts/">Blog</a></div>
     <h1 class="post-title entry-hint-parent">
       Is It a Palindrome Number? Three Ways to Solve It Without Converting to String
     </h1>
     <div class="post-description">
       I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.
     </div>
-    <div class="post-meta"><span title='2025-07-06 00:00:00 +0000 UTC'>July 6, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Frederico Gago
+    <div class="post-meta"><span title='2025-07-06 16:00:00 +0100 WEST'>July 6, 2025</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Frederico Gago
 
 </div>
   </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://fredericogago.github.io/frederico-gago/images/cover/Python-palindrome.png" alt="Python Code Cover Image">
+        
+</figure>
   <div class="post-content"><h2 id="-the-problem">🧩 The Problem<a hidden class="anchor" aria-hidden="true" href="#-the-problem">#</a></h2>
 <p>Given an integer <code>x</code>, determine whether it&rsquo;s a palindrome — that is, whether it reads the same forwards and backwards.</p>
 <p>🔗 Problem Link: <a href="https://leetcode.com/problems/palindrome-number/description/">LeetCode 9. Palindrome Number</a></p>
@@ -294,14 +300,14 @@ or check out more on <a href="https://github.com/fredericogago">GitHub</a>!</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="http://localhost:1313/frederico-gago/tags/python/">Python</a></li>
-      <li><a href="http://localhost:1313/frederico-gago/tags/leetcode/">LeetCode</a></li>
-      <li><a href="http://localhost:1313/frederico-gago/tags/clean-code/">Clean Code</a></li>
-      <li><a href="http://localhost:1313/frederico-gago/tags/algorithms/">Algorithms</a></li>
-      <li><a href="http://localhost:1313/frederico-gago/tags/interview-prep/">Interview Prep</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/python/">Python</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/leetcode/">Leetcode</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/clean-code/">Clean Code</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/algorithms/">Algorithms</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/interview-prep/">Interview Prep</a></li>
     </ul>
 <nav class="paginav">
-  <a class="next" href="http://localhost:1313/frederico-gago/posts/python-3-13-overview/">
+  <a class="next" href="https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/">
     <span class="title">Next »</span>
     <br>
     <span>My First Post</span>
@@ -313,7 +319,7 @@ or check out more on <a href="https://github.com/fredericogago">GitHub</a>!</p>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/frederico-gago/">Frederico Gago – Tech Blog</a></span> · 
+        <span>&copy; 2025 <a href="https://fredericogago.github.io/frederico-gago/">Frederico Gago – Tech Blog</a></span> · 
 
     <span>
         Powered by

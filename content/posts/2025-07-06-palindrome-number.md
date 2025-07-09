@@ -1,9 +1,17 @@
 +++
 title = "Is It a Palindrome Number? Three Ways to Solve It Without Converting to String"
-date = 2025-07-06
+date = 2025-07-06T16:00:00+01:00
+draft = false
 description = "I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion."
-tags = ["Python", "LeetCode", "Clean Code", "Algorithms", "Interview Prep"]
+tags = ["python", "leetcode", "clean code", "algorithms", "interview prep"]
+categories = ["python"]
+slug = "palindrome-number"
+
+[cover]
+  image = "images/cover/Python-palindrome.png"
+  alt = "Python Code Cover Image"
 +++
+
 
 ## 🧩 The Problem
 
