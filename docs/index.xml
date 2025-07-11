@@ -20,26 +20,20 @@
       <link>https://fredericogago.github.io/frederico-gago/about/</link>
       <pubDate>Tue, 24 Jun 2025 10:22:07 +0100</pubDate>
       <guid>https://fredericogago.github.io/frederico-gago/about/</guid>
-      <description>&lt;p&gt;Hi, I&amp;rsquo;m &lt;strong&gt;Frederico Gago&lt;/strong&gt;, a software developer passionate about solving problems through clean, scalable, and efficient systems. I specialize in Python 3.13, Clean Architecture, SOLID principles, and layered design patterns that stand the test of complexity.&lt;/p&gt;
-&lt;p&gt;My mission is to improve the way people work—especially in fields like accounting and finance—by automating repetitive tasks and removing operational noise. I believe software should empower people to focus on what truly matters: thinking, analyzing, and making meaningful decisions.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Hi, I&amp;rsquo;m &lt;strong&gt;Frederico Gago&lt;/strong&gt;, a passionate software developer dedicated to crafting solutions that transform complexity into clarity. I specialize in Python 3.13, Clean Architecture, SOLID principles, and thoughtful design patterns, driven by the belief that great software should feel intuitive, empowering, and elegant.&lt;/p&gt;
+&lt;p&gt;My mission is to redefine the way professionals—especially in accounting and finance—interact with their daily tasks. By automating routine processes and eliminating friction, I aim to help people reclaim their focus and creativity, enabling them to achieve more meaningful and impactful outcomes.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Contact</title>
       <link>https://fredericogago.github.io/frederico-gago/contact/</link>
       <pubDate>Tue, 24 Jun 2025 10:21:02 +0100</pubDate>
       <guid>https://fredericogago.github.io/frederico-gago/contact/</guid>
-      <description>&lt;p&gt;You can reach me at:&lt;/p&gt;
-&lt;p&gt;📧 Email: &lt;a href=&#34;mailto:frederico.gago@hotmail.com&#34;&gt;frederico.gago@hotmail.com&lt;/a&gt;&lt;br&gt;
-💼 LinkedIn: &lt;a href=&#34;https://www.linkedin.com/in/frederico-gago-5849281aa&#34;&gt;linkedin.com/in/frederico-gago-5849281aa&lt;/a&gt;&lt;br&gt;
-💻 GitHub: &lt;a href=&#34;https://github.com/fredericogago&#34;&gt;github.com/fredericogago&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Or use the contact form (coming soon).&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>My First Post</title>
-      <link>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</link>
-      <pubDate>Tue, 24 Jun 2025 09:35:50 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</guid>
-      <description>A technical blog post exploring Python 3.13 features.</description>
+      <description>&lt;p&gt;I&amp;rsquo;d love to hear from you—whether it&amp;rsquo;s to collaborate on a project, discuss software architecture, or simply connect.&lt;/p&gt;
+&lt;p&gt;Feel free to reach out through any of the following:&lt;/p&gt;
+&lt;p&gt;📧 &lt;strong&gt;Email&lt;/strong&gt;: &lt;a href=&#34;mailto:frederico.gago@hotmail.com&#34;&gt;frederico.gago@hotmail.com&lt;/a&gt;&lt;br&gt;
+💼 &lt;strong&gt;LinkedIn&lt;/strong&gt;: &lt;a href=&#34;https://www.linkedin.com/in/frederico-gago-5849281aa&#34;&gt;linkedin.com/in/frederico-gago-5849281aa&lt;/a&gt;&lt;br&gt;
+💻 &lt;strong&gt;GitHub&lt;/strong&gt;: &lt;a href=&#34;https://github.com/fredericogago&#34;&gt;github.com/fredericogago&lt;/a&gt;&lt;br&gt;
+🧠 &lt;strong&gt;LeetCode&lt;/strong&gt;: &lt;a href=&#34;https://leetcode.com/u/fredericogago&#34;&gt;leetcode.com/u/fredericogago&lt;/a&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

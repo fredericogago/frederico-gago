@@ -15,12 +15,5 @@
       <guid>https://fredericogago.github.io/frederico-gago/posts/palindrome-number/</guid>
       <description>I explore three different approaches to check if an integer is a palindrome — from the most direct solution to a mathematical reversal without string conversion.</description>
     </item>
-    <item>
-      <title>My First Post</title>
-      <link>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</link>
-      <pubDate>Tue, 24 Jun 2025 09:35:50 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/posts/python-3-13-overview/</guid>
-      <description>A technical blog post exploring Python 3.13 features.</description>
-    </item>
   </channel>
 </rss>
