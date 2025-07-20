@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Functional Programming on Frederico Gago – Tech Blog</title>
+    <link>https://fredericogago.github.io/frederico-gago/tags/functional-programming/</link>
+    <description>Recent content in Functional Programming on Frederico Gago – Tech Blog</description>
+    <generator>Hugo -- 0.147.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Jul 2025 12:09:04 +0100</lastBuildDate>
+    <atom:link href="https://fredericogago.github.io/frederico-gago/tags/functional-programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Roman to Integer — Clean, Fast, and Functional Approaches Compared</title>
+      <link>https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/</link>
+      <pubDate>Sun, 20 Jul 2025 12:09:04 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/</guid>
+      <description>LeetCode 13 — Parsing Roman numerals in Python using a clean single-pass solution and a functional overengineered version. Benchmarks and complexity included.</description>
+    </item>
+  </channel>
+</rss>

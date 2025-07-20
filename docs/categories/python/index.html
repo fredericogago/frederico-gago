@@ -135,6 +135,24 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://fredericogago.github.io/frederico-gago/images/cover/roman-cover.png" alt="Python Code Cover Image">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Roman to Integer — Clean, Fast, and Functional Approaches Compared
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>🧩 Problem: Roman to Integer (LeetCode 13) Convert a string representing a Roman numeral into its integer value. Roman numerals are typically written from largest to smallest (left to right), except for six well-known subtractive cases:
+I before V or X → 4, 9 X before L or C → 40, 90 C before D or M → 400, 900 ✅ Clean Idiomatic Solution (One-Pass) class Solution: SYMBOLS = { &#39;I&#39;: 1, &#39;V&#39;: 5, &#39;X&#39;: 10, &#39;L&#39;: 50, &#39;C&#39;: 100, &#39;D&#39;: 500, &#39;M&#39;: 1000 } def romanToInt(self, s: str) -&gt; int: total = 0 prev_value = 0 for c in s: value = self.SYMBOLS[c] total &#43;= value - 2 * prev_value if value &gt; prev_value else value prev_value = value return total Single loop Detects subtractive patterns with value &gt; prev_value Clean inline logic ✅ Runtime: 3 ms (faster than 79.17%)
+✅ Memory: 17.6 MB (less than 90.19%)
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-07-20 12:09:04 +0100 WEST'>July 20, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Frederico Gago</footer>
+  <a class="entry-link" aria-label="post link to Roman to Integer — Clean, Fast, and Functional Approaches Compared" href="https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://fredericogago.github.io/frederico-gago/images/cover/Python-palindrome.png" alt="Python Code Cover Image">
 </figure>
   <header class="entry-header">

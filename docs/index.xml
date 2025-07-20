@@ -6,8 +6,15 @@
     <description>Recent content on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Jul 2025 16:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 20 Jul 2025 12:09:04 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Roman to Integer — Clean, Fast, and Functional Approaches Compared</title>
+      <link>https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/</link>
+      <pubDate>Sun, 20 Jul 2025 12:09:04 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/</guid>
+      <description>LeetCode 13 — Parsing Roman numerals in Python using a clean single-pass solution and a functional overengineered version. Benchmarks and complexity included.</description>
+    </item>
     <item>
       <title>Is It a Palindrome Number? Three Ways to Solve It Without Converting to String</title>
       <link>https://fredericogago.github.io/frederico-gago/posts/palindrome-number/</link>

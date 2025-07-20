@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Roman to Integer — Clean, Fast, and Functional Approaches Compared | Frederico Gago – Tech Blog</title>
+<meta name="keywords" content="python, leetcode, clean code, algorithms, interview prep, functional programming">
+<meta name="description" content="LeetCode 13 — Parsing Roman numerals in Python using a clean single-pass solution and a functional overengineered version. Benchmarks and complexity included.">
+<meta name="author" content="Frederico Gago">
+<link rel="canonical" href="https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/">
+<link crossorigin="anonymous" href="https://fredericogago.github.io/frederico-gago/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://fredericogago.github.io/frederico-gago/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://fredericogago.github.io/frederico-gago/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://fredericogago.github.io/frederico-gago/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://fredericogago.github.io/frederico-gago/apple-touch-icon.png">
+<link rel="mask-icon" href="https://fredericogago.github.io/frederico-gago/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/">
+  <meta property="og:site_name" content="Frederico Gago – Tech Blog">
+  <meta property="og:title" content="Roman to Integer — Clean, Fast, and Functional Approaches Compared">
+  <meta property="og:description" content="LeetCode 13 — Parsing Roman numerals in Python using a clean single-pass solution and a functional overengineered version. Benchmarks and complexity included.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-20T12:09:04+01:00">
+    <meta property="article:modified_time" content="2025-07-20T12:09:04+01:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Leetcode">
+    <meta property="article:tag" content="Clean Code">
+    <meta property="article:tag" content="Algorithms">
+    <meta property="article:tag" content="Interview Prep">
+    <meta property="article:tag" content="Functional Programming">
+    <meta property="og:image" content="https://fredericogago.github.io/frederico-gago/images/cover/roman-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fredericogago.github.io/frederico-gago/images/cover/roman-cover.png">
+<meta name="twitter:title" content="Roman to Integer — Clean, Fast, and Functional Approaches Compared">
+<meta name="twitter:description" content="LeetCode 13 — Parsing Roman numerals in Python using a clean single-pass solution and a functional overengineered version. Benchmarks and complexity included.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Roman to Integer — Clean, Fast, and Functional Approaches Compared",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Roman to Integer — Clean, Fast, and Functional Approaches Compared",
+  "name": "Roman to Integer — Clean, Fast, and Functional Approaches Compared",
+  "description": "LeetCode 13 — Parsing Roman numerals in Python using a clean single-pass solution and a functional overengineered version. Benchmarks and complexity included.",
+  "keywords": [
+    "python", "leetcode", "clean code", "algorithms", "interview prep", "functional programming"
+  ],
+  "articleBody": "🧩 Problem: Roman to Integer (LeetCode 13) Convert a string representing a Roman numeral into its integer value. Roman numerals are typically written from largest to smallest (left to right), except for six well-known subtractive cases:\nI before V or X → 4, 9 X before L or C → 40, 90 C before D or M → 400, 900 ✅ Clean Idiomatic Solution (One-Pass) class Solution: SYMBOLS = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 } def romanToInt(self, s: str) -\u003e int: total = 0 prev_value = 0 for c in s: value = self.SYMBOLS[c] total += value - 2 * prev_value if value \u003e prev_value else value prev_value = value return total Single loop Detects subtractive patterns with value \u003e prev_value Clean inline logic ✅ Runtime: 3 ms (faster than 79.17%)\n✅ Memory: 17.6 MB (less than 90.19%)\n🔁 Overengineered (but fun!) Functional Version def romanToGenerator(s): from operator import add, sub SYMBOLS = { 'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000 } total = 0 prev_val = 0 for c in s: val = SYMBOLS[c] op = sub if prev_val \u003c val else add delta = val if op is add else val - 2 * prev_val total += delta yield total Uses operator.add / operator.sub Yields intermediate results step-by-step Great for teaching or tracing, but slower 📊 Benchmarks Version Avg. time (100K runs) Notes Idiomatic version ≈145 ms Fastest and cleanest Overengineered (list) ≈205 ms Stores operation pairs Overengineered (yield) ≈195 ms Generator-based, incremental 🧮 Complexity Analysis Time Complexity:\nBest / Worst / Average: O(n) — single pass Space Complexity:\nIdiomatic: O(1) (constant variables) Overengineered (list): O(n) (stores ops) Overengineered (yield): O(1) (no intermediate structure) ⏱️ Time Invested Reading and planning: 20 minutes Coding and analysis: 50 minutes Total: 1h10min 🧠 What I Learned Subtractive notation in Roman numerals can be generalized with value \u003e prev_value. The difference between clean idiomatic solutions and overengineered abstractions in Python. How to benchmark Python code using timeit, and what tradeoffs come with generators and operator functions. The value of exploring multiple angles of a problem, even if the first solution works. 🌍 Real-World Applications Token-based parsing of custom numeric notations or symbolic expressions. Building interpreters or compilers that evaluate streams of symbols (e.g., financial codes, scientific notation). Teaching clean code versus functional design tradeoffs. Performance benchmarking and complexity analysis in educational content. 💬 Personal Note What started as a simple Roman numeral conversion turned into an exploration of Python idioms, operator functions, generator design, and performance benchmarking.\nEven the simplest problems can reveal new learning paths if you’re curious enough 🧠\n📂 Code Repository You can find my full source code for this solution on GitHub:\n📦 Repo: github.com/fredericogago/leetcode 📄 File: Roman to Integer.py 👨‍💻 Like this post? Let’s connect on LinkedIn or check out more on GitHub!\n",
+  "wordCount" : "483",
+  "inLanguage": "en",
+  "image":"https://fredericogago.github.io/frederico-gago/images/cover/roman-cover.png","datePublished": "2025-07-20T12:09:04+01:00",
+  "dateModified": "2025-07-20T12:09:04+01:00",
+  "author":{
+    "@type": "Person",
+    "name": "Frederico Gago"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Frederico Gago – Tech Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://fredericogago.github.io/frederico-gago/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://fredericogago.github.io/frederico-gago/" accesskey="h" title="Frederico Gago – Tech Blog (Alt + H)">Frederico Gago – Tech Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://fredericogago.github.io/frederico-gago/">Home</a>&nbsp;»&nbsp;<a href="https://fredericogago.github.io/frederico-gago/posts/">Blog</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Roman to Integer — Clean, Fast, and Functional Approaches Compared
+    </h1>
+    <div class="post-description">
+      LeetCode 13 — Parsing Roman numerals in Python using a clean single-pass solution and a functional overengineered version. Benchmarks and complexity included.
+    </div>
+    <div class="post-meta"><span title='2025-07-20 12:09:04 +0100 WEST'>July 20, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Frederico Gago
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://fredericogago.github.io/frederico-gago/images/cover/roman-cover.png" alt="Python Code Cover Image">
+        
+</figure>
+  <div class="post-content"><h2 id="-problem-roman-to-integer-leetcode-13">🧩 Problem: Roman to Integer (<a href="https://leetcode.com/problems/roman-to-integer/">LeetCode 13</a>)<a hidden class="anchor" aria-hidden="true" href="#-problem-roman-to-integer-leetcode-13">#</a></h2>
+<p>Convert a string representing a Roman numeral into its integer value.
+Roman numerals are typically written from largest to smallest (left to right),
+except for six well-known subtractive cases:</p>
+<ul>
+<li>I before V or X → 4, 9</li>
+<li>X before L or C → 40, 90</li>
+<li>C before D or M → 400, 900</li>
+</ul>
+<h2 id="-clean-idiomatic-solution-one-pass">✅ Clean Idiomatic Solution (One-Pass)<a hidden class="anchor" aria-hidden="true" href="#-clean-idiomatic-solution-one-pass">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SYMBOLS</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">romanToInt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prev_value</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">SYMBOLS</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">prev_value</span> <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">prev_value</span> <span class="k">else</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">            <span class="n">prev_value</span> <span class="o">=</span> <span class="n">value</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">total</span>
+</span></span></code></pre></div><ul>
+<li>Single loop</li>
+<li>Detects subtractive patterns with <code>value &gt; prev_value</code></li>
+<li>Clean inline logic</li>
+</ul>
+<p>✅ Runtime: 3 ms (faster than 79.17%)<br>
+✅ Memory: 17.6 MB (less than 90.19%)</p>
+<h2 id="-overengineered-but-fun-functional-version">🔁 Overengineered (but fun!) Functional Version<a hidden class="anchor" aria-hidden="true" href="#-overengineered-but-fun-functional-version">#</a></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">romanToGenerator</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span><span class="p">,</span> <span class="n">sub</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SYMBOLS</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;L&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;D&#39;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prev_val</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">val</span> <span class="o">=</span> <span class="n">SYMBOLS</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">op</span> <span class="o">=</span> <span class="n">sub</span> <span class="k">if</span> <span class="n">prev_val</span> <span class="o">&lt;</span> <span class="n">val</span> <span class="k">else</span> <span class="n">add</span>
+</span></span><span class="line"><span class="cl">        <span class="n">delta</span> <span class="o">=</span> <span class="n">val</span> <span class="k">if</span> <span class="n">op</span> <span class="ow">is</span> <span class="n">add</span> <span class="k">else</span> <span class="n">val</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">prev_val</span>
+</span></span><span class="line"><span class="cl">        <span class="n">total</span> <span class="o">+=</span> <span class="n">delta</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">total</span>
+</span></span></code></pre></div><ul>
+<li>Uses <code>operator.add</code> / <code>operator.sub</code></li>
+<li>Yields intermediate results step-by-step</li>
+<li>Great for teaching or tracing, but slower</li>
+</ul>
+<h2 id="-benchmarks">📊 Benchmarks<a hidden class="anchor" aria-hidden="true" href="#-benchmarks">#</a></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Version</th>
+          <th>Avg. time (100K runs)</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Idiomatic version</td>
+          <td>≈145 ms</td>
+          <td>Fastest and cleanest</td>
+      </tr>
+      <tr>
+          <td>Overengineered (list)</td>
+          <td>≈205 ms</td>
+          <td>Stores operation pairs</td>
+      </tr>
+      <tr>
+          <td>Overengineered (yield)</td>
+          <td>≈195 ms</td>
+          <td>Generator-based, incremental</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="-complexity-analysis">🧮 Complexity Analysis<a hidden class="anchor" aria-hidden="true" href="#-complexity-analysis">#</a></h2>
+<ul>
+<li>
+<p>Time Complexity:</p>
+<ul>
+<li>Best / Worst / Average: O(n) — single pass</li>
+</ul>
+</li>
+<li>
+<p>Space Complexity:</p>
+<ul>
+<li>Idiomatic: O(1) (constant variables)</li>
+<li>Overengineered (list): O(n) (stores ops)</li>
+<li>Overengineered (yield): O(1) (no intermediate structure)</li>
+</ul>
+</li>
+</ul>
+<h2 id="-time-invested">⏱️ Time Invested<a hidden class="anchor" aria-hidden="true" href="#-time-invested">#</a></h2>
+<ul>
+<li>Reading and planning: 20 minutes</li>
+<li>Coding and analysis: 50 minutes</li>
+<li><strong>Total:</strong> 1h10min</li>
+</ul>
+<h2 id="-what-i-learned">🧠 What I Learned<a hidden class="anchor" aria-hidden="true" href="#-what-i-learned">#</a></h2>
+<ul>
+<li>Subtractive notation in Roman numerals can be generalized with <code>value &gt; prev_value</code>.</li>
+<li>The difference between clean idiomatic solutions and overengineered abstractions in Python.</li>
+<li>How to benchmark Python code using <code>timeit</code>, and what tradeoffs come with generators and operator functions.</li>
+<li>The value of exploring multiple angles of a problem, even if the first solution works.</li>
+</ul>
+<h2 id="-real-world-applications">🌍 Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#-real-world-applications">#</a></h2>
+<ul>
+<li>Token-based parsing of custom numeric notations or symbolic expressions.</li>
+<li>Building interpreters or compilers that evaluate streams of symbols (e.g., financial codes, scientific notation).</li>
+<li>Teaching clean code versus functional design tradeoffs.</li>
+<li>Performance benchmarking and complexity analysis in educational content.</li>
+</ul>
+<h2 id="-personal-note">💬 Personal Note<a hidden class="anchor" aria-hidden="true" href="#-personal-note">#</a></h2>
+<p>What started as a simple Roman numeral conversion turned into an exploration of Python idioms, operator functions, generator design, and performance benchmarking.</p>
+<p>Even the simplest problems can reveal new learning paths if you&rsquo;re curious enough 🧠</p>
+<hr>
+<h3 id="-code-repository">📂 Code Repository<a hidden class="anchor" aria-hidden="true" href="#-code-repository">#</a></h3>
+<p>You can find my full source code for this solution on GitHub:</p>
+<ul>
+<li>📦 Repo: <a href="https://github.com/fredericogago/leetcode.git">github.com/fredericogago/leetcode</a></li>
+<li>📄 File: <a href="https://github.com/fredericogago/leetcode/blob/main/src/leetcode/editor/en/%5B13%5DRoman%20to%20Integer.py"><code>Roman to Integer.py</code></a></li>
+</ul>
+<hr>
+<p>👨‍💻 Like this post?
+Let’s connect on <a href="https://www.linkedin.com/in/frederico-gago-5849281aa">LinkedIn</a>
+or check out more on <a href="https://github.com/fredericogago">GitHub</a>!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/python/">Python</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/leetcode/">Leetcode</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/clean-code/">Clean Code</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/algorithms/">Algorithms</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/interview-prep/">Interview Prep</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/functional-programming/">Functional Programming</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://fredericogago.github.io/frederico-gago/posts/palindrome-number/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Is It a Palindrome Number? Three Ways to Solve It Without Converting to String</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://fredericogago.github.io/frederico-gago/">Frederico Gago – Tech Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
