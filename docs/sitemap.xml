@@ -2,19 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/accounting/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/automation/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/automation/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/posts/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/operational-efficiency/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/python/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/</loc>
+    <lastmod>2025-07-27T11:37:08+01:00</lastmod>
+  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/algorithms/</loc>
     <lastmod>2025-07-20T12:09:04+01:00</lastmod>
   </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/posts/</loc>
-    <lastmod>2025-07-20T12:09:04+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/categories/</loc>
-    <lastmod>2025-07-20T12:09:04+01:00</lastmod>
-  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/clean-code/</loc>
-    <lastmod>2025-07-20T12:09:04+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/</loc>
     <lastmod>2025-07-20T12:09:04+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/functional-programming/</loc>
@@ -29,13 +50,7 @@
     <loc>https://fredericogago.github.io/frederico-gago/categories/python/</loc>
     <lastmod>2025-07-20T12:09:04+01:00</lastmod>
   </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/python/</loc>
-    <lastmod>2025-07-20T12:09:04+01:00</lastmod>
-  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/</loc>
-    <lastmod>2025-07-20T12:09:04+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/</loc>
     <lastmod>2025-07-20T12:09:04+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/posts/palindrome-number/</loc>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Automation on Frederico Gago – Tech Blog</title>
+    <link>https://fredericogago.github.io/frederico-gago/tags/automation/</link>
+    <description>Recent content in Automation on Frederico Gago – Tech Blog</description>
+    <generator>Hugo -- 0.147.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Jul 2025 11:37:08 +0100</lastBuildDate>
+    <atom:link href="https://fredericogago.github.io/frederico-gago/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From Spreadsheets to Scripts: My Journey Automating Accounting with Python</title>
+      <link>https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/</link>
+      <pubDate>Sun, 27 Jul 2025 11:37:08 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/</guid>
+      <description>Discover how the Python language can transform repetitive accounting processes into efficient, automated, and error-free workflows.</description>
+    </item>
+  </channel>
+</rss>

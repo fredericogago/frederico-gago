@@ -6,8 +6,15 @@
     <description>Recent content in Blog on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Jul 2025 12:09:04 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 27 Jul 2025 11:37:08 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>From Spreadsheets to Scripts: My Journey Automating Accounting with Python</title>
+      <link>https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/</link>
+      <pubDate>Sun, 27 Jul 2025 11:37:08 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/</guid>
+      <description>Discover how the Python language can transform repetitive accounting processes into efficient, automated, and error-free workflows.</description>
+    </item>
     <item>
       <title>Roman to Integer — Clean, Fast, and Functional Approaches Compared</title>
       <link>https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/</link>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>From Spreadsheets to Scripts: My Journey Automating Accounting with Python | Frederico Gago – Tech Blog</title>
+<meta name="keywords" content="Python, Automation, Accounting, Operational Efficiency">
+<meta name="description" content="Discover how the Python language can transform repetitive accounting processes into efficient, automated, and error-free workflows.">
+<meta name="author" content="Frederico Gago">
+<link rel="canonical" href="https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/">
+<link crossorigin="anonymous" href="https://fredericogago.github.io/frederico-gago/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://fredericogago.github.io/frederico-gago/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://fredericogago.github.io/frederico-gago/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://fredericogago.github.io/frederico-gago/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://fredericogago.github.io/frederico-gago/apple-touch-icon.png">
+<link rel="mask-icon" href="https://fredericogago.github.io/frederico-gago/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/">
+  <meta property="og:site_name" content="Frederico Gago – Tech Blog">
+  <meta property="og:title" content="From Spreadsheets to Scripts: My Journey Automating Accounting with Python">
+  <meta property="og:description" content="Discover how the Python language can transform repetitive accounting processes into efficient, automated, and error-free workflows.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-07-27T11:37:08+01:00">
+    <meta property="article:modified_time" content="2025-07-27T11:37:08+01:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Automation">
+    <meta property="article:tag" content="Accounting">
+    <meta property="article:tag" content="Operational Efficiency">
+    <meta property="og:image" content="https://fredericogago.github.io/frederico-gago/images/cover/python-contabilidade.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fredericogago.github.io/frederico-gago/images/cover/python-contabilidade.png">
+<meta name="twitter:title" content="From Spreadsheets to Scripts: My Journey Automating Accounting with Python">
+<meta name="twitter:description" content="Discover how the Python language can transform repetitive accounting processes into efficient, automated, and error-free workflows.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "From Spreadsheets to Scripts: My Journey Automating Accounting with Python",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "From Spreadsheets to Scripts: My Journey Automating Accounting with Python",
+  "name": "From Spreadsheets to Scripts: My Journey Automating Accounting with Python",
+  "description": "Discover how the Python language can transform repetitive accounting processes into efficient, automated, and error-free workflows.",
+  "keywords": [
+    "Python", "Automation", "Accounting", "Operational Efficiency"
+  ],
+  "articleBody": "From Spreadsheets to Scripts: My Journey Automating Accounting with Python My journey into process automation started at an accounting firm, where I quickly found myself buried in repetitive manual tasks and inefficient workflows. From processing invoices to reconciling spreadsheets, I could see how much time was being lost to work that could — and should — be automated.\nWhen I started working there, I spent the first few months organizing paperwork and doing basic data entry. I quickly realized two things:\nMany processes were slow, repetitive, and prone to errors. No one seemed to have time to improve them. That’s when I started asking questions: “Does it really need to be done this way?”, “Where are we losing time?”, “How can we simplify this?”\nThat curiosity led me to redesign small internal workflows. But there were limits. At some point, I realized automation was the only way to scale those improvements — and that’s how my journey into programming began. I chose Python for its simplicity, elegance, and power: with just a few lines, I could achieve more than hours of manual work.\nAnd I never looked back.\nWhy Automate Accounting Processes? Automation isn’t just about saving time. It’s a competitive necessity:\n✅ Fewer human errors — Scripts don’t get distracted or misplace columns.\n✅ More consistency — The process runs the same way every time.\n✅ Scalable efficiency — Workload can grow without doubling the team.\n✅ Happier employees — Free time for higher-value tasks like analysis and strategy.\n✅ Better compliance — Automatically validate rules and generate audit logs.\n✅ Data for decisions — Capture real-time metrics and identify bottlenecks.\nAutomation doesn’t replace people — it empowers them.\nWhy Python? Though it’s often associated with AI and Data Science, Python is a perfect fit for business automation:\n🧠 Simple syntax: easy to learn, even for non-developers like accountants.\n⚡ High productivity: do more with less code.\n🔧 Libraries for everything:\npandas, openpyxl: Excel, CSV, structured data smtplib, requests: email, APIs fuzzywuzzy, difflib: smart reconciliations pdfplumber, PyPDF2: PDF extraction playwright, Selenium: browser automation 🌍 Connects with everything: ERP, banks, government portals, web services.\n🤝 Massive community: solutions, tutorials, support — always just a search away.\nReal-World Examples of Python Automation 💼 Import and consolidate Excel files — hundreds of rows merged in seconds.\n🏦 Smart bank reconciliation — match statements using fuzzy logic.\n📈 Automated reporting — generate PDFs with charts and send by email.\n📥 ERP journal entries via API — connect to the ERP to post transactions from CSV files.\n📊 Internal dashboards — lightweight apps with real-time financial data.\n🧾 Tax validations — ensure correct VAT, dates, and NIF before submission.\nWhat About JavaScript/Node.js? JavaScript, with its Node.js runtime, can also be a good option for automating processes — especially in companies with strong web development teams. It’s a versatile language, backed by a large community, capable of handling both simple scripts and complex applications.\nHowever, when it comes to back-office automation — reading files, integrating systems, processing structured data — Python stands out for its simplicity and power.\nJavaScript shines in user interfaces and interactive tools, while Python is the go-to for silent, background automations that handle large volumes of data elegantly.\nBoth languages can coexist and complement each other. But for those coming from business or accounting roles, and looking to automate daily tasks, Python remains unbeatable thanks to its easy learning curve, library ecosystem, and productivity focus.\nThe Key Is Internal Knowledge The biggest competitive edge isn’t code — it’s knowing the process. When someone from inside the team understands the business and can code, they can build truly useful, tailored solutions.\nThat was my case: by understanding accounting workflows, I could apply Python to solve real problems. And that’s what many SMEs need: technology with context.\nWe’re here to solve problems — that’s why automation (and even AI) won’t replace people, but rather empower them. Automating means giving people the right tools to focus on what really matters and make higher-impact decisions.\nConclusion Automating accounting isn’t just about saving time. It’s about building systems that are efficient, reliable, and human-centered.\nIf you’re a company, invest in hybrid talent — people who understand the business and can code in Python.\nIf you’re an accounting professional, learn to code. You don’t need to be an engineer — just start small. That’s how I did it.\nPython taught me that automation is about taking better care of the work, the people, and the future of business.\nReady to explore how Python automation can save time, reduce errors, and bring real value to your accounting workflows? Let’s connect! Feel free to reach out via LinkedIn or check out some of my projects on GitHub. I’m always up for sharing ideas or collaborating on meaningful automation challenges.\n📌 GitHub • LinkedIn • LeetCode\n",
+  "wordCount" : "806",
+  "inLanguage": "en",
+  "image":"https://fredericogago.github.io/frederico-gago/images/cover/python-contabilidade.png","datePublished": "2025-07-27T11:37:08+01:00",
+  "dateModified": "2025-07-27T11:37:08+01:00",
+  "author":{
+    "@type": "Person",
+    "name": "Frederico Gago"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Frederico Gago – Tech Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://fredericogago.github.io/frederico-gago/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://fredericogago.github.io/frederico-gago/" accesskey="h" title="Frederico Gago – Tech Blog (Alt + H)">Frederico Gago – Tech Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://fredericogago.github.io/frederico-gago/">Home</a>&nbsp;»&nbsp;<a href="https://fredericogago.github.io/frederico-gago/posts/">Blog</a></div>
+    <h1 class="post-title entry-hint-parent">
+      From Spreadsheets to Scripts: My Journey Automating Accounting with Python
+    </h1>
+    <div class="post-description">
+      Discover how the Python language can transform repetitive accounting processes into efficient, automated, and error-free workflows.
+    </div>
+    <div class="post-meta"><span title='2025-07-27 11:37:08 +0100 WEST'>July 27, 2025</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Frederico Gago
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://fredericogago.github.io/frederico-gago/images/cover/python-contabilidade.png" alt="Cover Image">
+        
+</figure>
+  <div class="post-content"><h1 id="from-spreadsheets-to-scripts-my-journey-automating-accounting-with-python">From Spreadsheets to Scripts: My Journey Automating Accounting with Python<a hidden class="anchor" aria-hidden="true" href="#from-spreadsheets-to-scripts-my-journey-automating-accounting-with-python">#</a></h1>
+<p>My journey into process automation started at an accounting firm, where I quickly found myself buried in repetitive manual tasks and inefficient workflows. From processing invoices to reconciling spreadsheets, I could see how much time was being lost to work that could — and should — be automated.</p>
+<p>When I started working there, I spent the first few months organizing paperwork and doing basic data entry. I quickly realized two things:</p>
+<ol>
+<li>Many processes were slow, repetitive, and prone to errors.</li>
+<li>No one seemed to have time to improve them.</li>
+</ol>
+<p>That’s when I started asking questions: <em>&ldquo;Does it really need to be done this way?&rdquo;, &ldquo;Where are we losing time?&rdquo;, &ldquo;How can we simplify this?&rdquo;</em></p>
+<p>That curiosity led me to redesign small internal workflows. But there were limits. At some point, I realized <strong>automation</strong> was the only way to scale those improvements — and that’s how my journey into programming began. I chose <strong>Python</strong> for its simplicity, elegance, and power: with just a few lines, I could achieve more than hours of manual work.</p>
+<p>And I never looked back.</p>
+<hr>
+<h2 id="why-automate-accounting-processes">Why Automate Accounting Processes?<a hidden class="anchor" aria-hidden="true" href="#why-automate-accounting-processes">#</a></h2>
+<p>Automation isn’t just about saving time. It’s a <strong>competitive necessity</strong>:</p>
+<p>✅ <strong>Fewer human errors</strong> — Scripts don’t get distracted or misplace columns.</p>
+<p>✅ <strong>More consistency</strong> — The process runs the same way every time.</p>
+<p>✅ <strong>Scalable efficiency</strong> — Workload can grow without doubling the team.</p>
+<p>✅ <strong>Happier employees</strong> — Free time for higher-value tasks like analysis and strategy.</p>
+<p>✅ <strong>Better compliance</strong> — Automatically validate rules and generate audit logs.</p>
+<p>✅ <strong>Data for decisions</strong> — Capture real-time metrics and identify bottlenecks.</p>
+<p>Automation doesn’t replace people — it <strong>empowers them</strong>.</p>
+<hr>
+<h2 id="why-python">Why Python?<a hidden class="anchor" aria-hidden="true" href="#why-python">#</a></h2>
+<p>Though it’s often associated with AI and Data Science, Python is a perfect fit for <strong>business automation</strong>:</p>
+<p>🧠 <strong>Simple syntax</strong>: easy to learn, even for non-developers like accountants.</p>
+<p>⚡ <strong>High productivity</strong>: do more with less code.</p>
+<p>🔧 <strong>Libraries for everything</strong>:</p>
+<ul>
+<li><code>pandas</code>, <code>openpyxl</code>: Excel, CSV, structured data</li>
+<li><code>smtplib</code>, <code>requests</code>: email, APIs</li>
+<li><code>fuzzywuzzy</code>, <code>difflib</code>: smart reconciliations</li>
+<li><code>pdfplumber</code>, <code>PyPDF2</code>: PDF extraction</li>
+<li><code>playwright</code>, <code>Selenium</code>: browser automation</li>
+</ul>
+<p>🌍 <strong>Connects with everything</strong>: ERP, banks, government portals, web services.</p>
+<p>🤝 <strong>Massive community</strong>: solutions, tutorials, support — always just a search away.</p>
+<hr>
+<h2 id="real-world-examples-of-python-automation">Real-World Examples of Python Automation<a hidden class="anchor" aria-hidden="true" href="#real-world-examples-of-python-automation">#</a></h2>
+<p>💼 <strong>Import and consolidate Excel files</strong> — hundreds of rows merged in seconds.</p>
+<p>🏦 <strong>Smart bank reconciliation</strong> — match statements using fuzzy logic.</p>
+<p>📈 <strong>Automated reporting</strong> — generate PDFs with charts and send by email.</p>
+<p>📥 <strong>ERP journal entries via API</strong> — connect to the ERP to post transactions from CSV files.</p>
+<p>📊 <strong>Internal dashboards</strong> — lightweight apps with real-time financial data.</p>
+<p>🧾 <strong>Tax validations</strong> — ensure correct VAT, dates, and NIF before submission.</p>
+<hr>
+<h2 id="what-about-javascriptnodejs">What About JavaScript/Node.js?<a hidden class="anchor" aria-hidden="true" href="#what-about-javascriptnodejs">#</a></h2>
+<p>JavaScript, with its Node.js runtime, can also be a good option for automating processes — especially in companies with strong web development teams. It’s a versatile language, backed by a large community, capable of handling both simple scripts and complex applications.</p>
+<p>However, when it comes to <strong>back-office automation</strong> — reading files, integrating systems, processing structured data — <strong>Python stands out</strong> for its simplicity and power.</p>
+<p>JavaScript shines in user interfaces and interactive tools, while Python is the go-to for silent, background automations that handle large volumes of data elegantly.</p>
+<p>Both languages can coexist and complement each other. But for those coming from business or accounting roles, and looking to automate daily tasks, <strong>Python remains unbeatable</strong> thanks to its easy learning curve, library ecosystem, and productivity focus.</p>
+<hr>
+<h2 id="the-key-is-internal-knowledge">The Key Is Internal Knowledge<a hidden class="anchor" aria-hidden="true" href="#the-key-is-internal-knowledge">#</a></h2>
+<p>The biggest competitive edge <strong>isn’t code</strong> — it’s knowing the process. When someone from inside the team understands the business and can code, they can build <strong>truly useful, tailored solutions</strong>.</p>
+<p>That was my case: by understanding accounting workflows, I could apply Python to solve real problems. And that’s what many SMEs need: <strong>technology with context</strong>.</p>
+<p>We’re here to solve problems — that’s why automation (and even AI) <strong>won’t replace people</strong>, but rather <strong>empower them</strong>. Automating means giving people the right tools to focus on what really matters and make higher-impact decisions.</p>
+<hr>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Automating accounting isn’t just about saving time. It’s about building <strong>systems that are efficient, reliable, and human-centered</strong>.</p>
+<p>If you&rsquo;re a company, invest in hybrid talent — people who understand the business and can code in Python.</p>
+<p>If you&rsquo;re an accounting professional, learn to code. You don’t need to be an engineer — just start small. That’s how I did it.</p>
+<p><strong>Python taught me that automation is about taking better care of the work, the people, and the future of business.</strong></p>
+<p>Ready to explore how Python automation can save time, reduce errors, and bring real value to your accounting workflows? Let’s connect! Feel free to reach out via LinkedIn or check out some of my projects on GitHub. I’m always up for sharing ideas or collaborating on meaningful automation challenges.</p>
+<hr>
+<p>📌 <a href="https://github.com/fredericogago">GitHub</a> • <a href="https://linkedin.com/in/frederico-gago-5849281aa">LinkedIn</a> • <a href="https://leetcode.com/u/fredericogago">LeetCode</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/python/">Python</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/automation/">Automation</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/accounting/">Accounting</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/operational-efficiency/">Operational Efficiency</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Roman to Integer — Clean, Fast, and Functional Approaches Compared</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://fredericogago.github.io/frederico-gago/">Frederico Gago – Tech Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
