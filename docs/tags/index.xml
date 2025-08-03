@@ -6,8 +6,50 @@
     <description>Recent content in Tags on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Jul 2025 11:37:08 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 03 Aug 2025 12:33:27 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Algorithms</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/algorithms/</link>
+      <pubDate>Sun, 03 Aug 2025 12:33:27 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Benchmarking</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/benchmarking/</link>
+      <pubDate>Sun, 03 Aug 2025 12:33:27 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/benchmarking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Clean-Code</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/clean-code/</link>
+      <pubDate>Sun, 03 Aug 2025 12:33:27 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/clean-code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Interview-Prep</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/interview-prep/</link>
+      <pubDate>Sun, 03 Aug 2025 12:33:27 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/interview-prep/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Leetcode</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/leetcode/</link>
+      <pubDate>Sun, 03 Aug 2025 12:33:27 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/leetcode/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/python/</link>
+      <pubDate>Sun, 03 Aug 2025 12:33:27 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/python/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Accounting</title>
       <link>https://fredericogago.github.io/frederico-gago/tags/accounting/</link>
@@ -30,45 +72,10 @@
       <description></description>
     </item>
     <item>
-      <title>Python</title>
-      <link>https://fredericogago.github.io/frederico-gago/tags/python/</link>
-      <pubDate>Sun, 27 Jul 2025 11:37:08 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/tags/python/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Algorithms</title>
-      <link>https://fredericogago.github.io/frederico-gago/tags/algorithms/</link>
-      <pubDate>Sun, 20 Jul 2025 12:09:04 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/tags/algorithms/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Clean Code</title>
-      <link>https://fredericogago.github.io/frederico-gago/tags/clean-code/</link>
-      <pubDate>Sun, 20 Jul 2025 12:09:04 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/tags/clean-code/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Functional Programming</title>
       <link>https://fredericogago.github.io/frederico-gago/tags/functional-programming/</link>
       <pubDate>Sun, 20 Jul 2025 12:09:04 +0100</pubDate>
       <guid>https://fredericogago.github.io/frederico-gago/tags/functional-programming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Interview Prep</title>
-      <link>https://fredericogago.github.io/frederico-gago/tags/interview-prep/</link>
-      <pubDate>Sun, 20 Jul 2025 12:09:04 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/tags/interview-prep/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Leetcode</title>
-      <link>https://fredericogago.github.io/frederico-gago/tags/leetcode/</link>
-      <pubDate>Sun, 20 Jul 2025 12:09:04 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/tags/leetcode/</guid>
       <description></description>
     </item>
   </channel>

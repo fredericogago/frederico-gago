@@ -6,8 +6,15 @@
     <description>Recent content in Algorithms on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Jul 2025 12:09:04 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 03 Aug 2025 12:33:27 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Longest Common Prefix: Five Algorithms Compared</title>
+      <link>https://fredericogago.github.io/frederico-gago/posts/longest-common-prefix/</link>
+      <pubDate>Sun, 03 Aug 2025 12:33:27 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/posts/longest-common-prefix/</guid>
+      <description>Explore five different strategies to solve LeetCode 14 - Longest Common Prefix, complete with benchmarks, complexity analysis, and guidance on choosing the optimal approach.</description>
+    </item>
     <item>
       <title>Roman to Integer — Clean, Fast, and Functional Approaches Compared</title>
       <link>https://fredericogago.github.io/frederico-gago/posts/roman-to-integer/</link>

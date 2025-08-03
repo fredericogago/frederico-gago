@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Longest Common Prefix: Five Algorithms Compared | Frederico Gago – Tech Blog</title>
+<meta name="keywords" content="python, leetcode, algorithms, benchmarking, clean-code, interview-prep">
+<meta name="description" content="Explore five different strategies to solve LeetCode 14 - Longest Common Prefix, complete with benchmarks, complexity analysis, and guidance on choosing the optimal approach.">
+<meta name="author" content="Frederico Gago">
+<link rel="canonical" href="https://fredericogago.github.io/frederico-gago/posts/longest-common-prefix/">
+<link crossorigin="anonymous" href="https://fredericogago.github.io/frederico-gago/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://fredericogago.github.io/frederico-gago/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://fredericogago.github.io/frederico-gago/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://fredericogago.github.io/frederico-gago/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://fredericogago.github.io/frederico-gago/apple-touch-icon.png">
+<link rel="mask-icon" href="https://fredericogago.github.io/frederico-gago/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://fredericogago.github.io/frederico-gago/posts/longest-common-prefix/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://fredericogago.github.io/frederico-gago/posts/longest-common-prefix/">
+  <meta property="og:site_name" content="Frederico Gago – Tech Blog">
+  <meta property="og:title" content="Longest Common Prefix: Five Algorithms Compared">
+  <meta property="og:description" content="Explore five different strategies to solve LeetCode 14 - Longest Common Prefix, complete with benchmarks, complexity analysis, and guidance on choosing the optimal approach.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-03T12:33:27+01:00">
+    <meta property="article:modified_time" content="2025-08-03T12:33:27+01:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Leetcode">
+    <meta property="article:tag" content="Algorithms">
+    <meta property="article:tag" content="Benchmarking">
+    <meta property="article:tag" content="Clean-Code">
+    <meta property="article:tag" content="Interview-Prep">
+    <meta property="og:image" content="https://fredericogago.github.io/frederico-gago/images/cover/longest-common-prefix-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fredericogago.github.io/frederico-gago/images/cover/longest-common-prefix-cover.png">
+<meta name="twitter:title" content="Longest Common Prefix: Five Algorithms Compared">
+<meta name="twitter:description" content="Explore five different strategies to solve LeetCode 14 - Longest Common Prefix, complete with benchmarks, complexity analysis, and guidance on choosing the optimal approach.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Longest Common Prefix: Five Algorithms Compared",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/longest-common-prefix/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Longest Common Prefix: Five Algorithms Compared",
+  "name": "Longest Common Prefix: Five Algorithms Compared",
+  "description": "Explore five different strategies to solve LeetCode 14 - Longest Common Prefix, complete with benchmarks, complexity analysis, and guidance on choosing the optimal approach.",
+  "keywords": [
+    "python", "leetcode", "algorithms", "benchmarking", "clean-code", "interview-prep"
+  ],
+  "articleBody": "🔢 Problem Statement LeetCode 14 – Longest Common Prefix\nGiven an array of strings, return the longest common prefix among them. If no common prefix exists, return an empty string (\"\").\nExample 1\nInput: [\"flower\", \"flow\", \"flight\"] → Output: \"fl\" Example 2\nInput: [\"dog\", \"racecar\", \"car\"] → Output: \"\" Constraints\n1 ≤ strs.length ≤ 200 0 ≤ strs[i].length ≤ 200 strs[i] contains only lowercase English letters if non-empty. 👨‍💻 Solution Strategies We’ll explore and compare five distinct approaches, from brute force to divide \u0026 conquer:\n# Approach Time Complexity Space Bench Rank 1 Horizontal Scan O(S) O(1) 4th 2 Zip-based Scan O(S) O(1) 3rd 3 Binary Search on Prefix Length O(S·log m) O(1) 2nd 4 Sort \u0026 Compare (first vs last) O(n·m + n log n) O(1) 1st 5 Divide \u0026 Conquer O(S·log n) O(log n) 5th Where:\nn = number of strings m = length of the shortest string S = total number of characters across all strings 📝 Detailed Breakdown 1. Horizontal Scan Compare each character position across all strings until a mismatch occurs.\nfor i in range(min_len): ch = strs[0][i] if all(s[i] == ch for s in strs): prefix += ch else: break 👍 When to use: Very small input size or whiteboard interviews—simple and intuitive.\n2. Zip-based Scan Transpose the list of strings with zip(*strs) and use set to detect divergence.\nfor letters in zip(*strs): if len(set(letters)) == 1: prefix += letters[0] else: break 👍 When to use: Clean Pythonic code; moderate input sizes, readability prioritized.\n3. Binary Search on Prefix Length Binary‐search the possible prefix length range [1..min_len], validating with startswith().\nlow, high = 1, min_len while low \u003c= high: mid = (low + high) // 2 if is_common_prefix(mid): best = strs[0][:mid] low = mid + 1 else: high = mid - 1 👍 When to use: Strings are long (large m), and individual comparisons are expensive.\n4. Sort \u0026 Compare (First vs Last) Sort strs lexicographically; only the first and last items need comparison.\nstrs.sort() first, last = strs[0], strs[-1] for i, (a, b) in enumerate(zip(first, last)): if a != b: return first[:i] return first 👍 When to use: Default choice—smallest code footprint and best benchmark performance.\n5. Divide \u0026 Conquer Recursively split the array, compute LCP for each half, then merge.\ndef lcp_range(l, r): if l == r: return strs[l] mid = (l + r) // 2 left = lcp_range(l, mid) right = lcp_range(mid + 1, r) # merge two prefixes return common_prefix(left, right) 👍 When to use: Academic deep dives or parallel execution frameworks.\n📊 Benchmark Results Average runtime per call (seconds):\nn Sort \u0026 Compare Binary Search Zip Scan Horizontal Scan Divide \u0026 Conquer 10 0.000012 0.000012 0.000021 0.000078 0.000061 100 0.000012 0.000034 0.000106 0.000424 0.000692 500 0.000017 0.000177 0.000546 0.002052 0.002920 1000 0.000022 0.000390 0.001079 0.005615 0.005845 2000 0.000052 0.000723 0.002315 0.008572 0.011302 🧑‍🏫 When to Use Each Approach Sort \u0026 Compare: Go-to for most real-world cases—minimal code, fastest in practice. Binary Search: When strings are very long and each startswith check is expensive. Zip-based Scan: Super readable and concise; perfect for moderate input sizes. Horizontal Scan: Ultra-clear and memory-light; good for tiny lists or interview whiteboard. Divide \u0026 Conquer: Great for teaching or parallel frameworks—even though recursion adds overhead. 💡 Key Takeaways Constant‐time factors matter: two O(S) scans can differ drastically in practice. Benchmark on realistic data shapes before optimizing. Keep code simple unless a clear bottleneck exists. ⏱️ Time Invested Analysis \u0026 design: 15 min Implementation \u0026 benchmarking: 30 min Writing \u0026 review: 10 min Total: ~ 55 min\n🔗 Resources ▶ Run on LeetCode 🔗 My Submission 💻 Source Code on GitHub ✍️ Enjoyed this deep dive? Let’s connect on LinkedIn or explore more on GitHub.\n",
+  "wordCount" : "619",
+  "inLanguage": "en",
+  "image":"https://fredericogago.github.io/frederico-gago/images/cover/longest-common-prefix-cover.png","datePublished": "2025-08-03T12:33:27+01:00",
+  "dateModified": "2025-08-03T12:33:27+01:00",
+  "author":{
+    "@type": "Person",
+    "name": "Frederico Gago"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://fredericogago.github.io/frederico-gago/posts/longest-common-prefix/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Frederico Gago – Tech Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://fredericogago.github.io/frederico-gago/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://fredericogago.github.io/frederico-gago/" accesskey="h" title="Frederico Gago – Tech Blog (Alt + H)">Frederico Gago – Tech Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://fredericogago.github.io/frederico-gago/">Home</a>&nbsp;»&nbsp;<a href="https://fredericogago.github.io/frederico-gago/posts/">Blog</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Longest Common Prefix: Five Algorithms Compared
+    </h1>
+    <div class="post-description">
+      Explore five different strategies to solve LeetCode 14 - Longest Common Prefix, complete with benchmarks, complexity analysis, and guidance on choosing the optimal approach.
+    </div>
+    <div class="post-meta"><span title='2025-08-03 12:33:27 +0100 WEST'>August 3, 2025</span>&nbsp;·&nbsp;3 min&nbsp;·&nbsp;Frederico Gago
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://fredericogago.github.io/frederico-gago/images/cover/longest-common-prefix-cover.png" alt="Illustration of string prefixes">
+        
+</figure>
+  <div class="post-content"><h2 id="-problem-statement">🔢 Problem Statement<a hidden class="anchor" aria-hidden="true" href="#-problem-statement">#</a></h2>
+<p><strong>LeetCode 14 – Longest Common Prefix</strong><br>
+Given an array of strings, return the longest common prefix among them. If no common prefix exists, return an empty string (<code>&quot;&quot;</code>).</p>
+<ul>
+<li><strong>Example 1</strong><br>
+Input: <code>[&quot;flower&quot;, &quot;flow&quot;, &quot;flight&quot;]</code> → Output: <code>&quot;fl&quot;</code></li>
+<li><strong>Example 2</strong><br>
+Input: <code>[&quot;dog&quot;, &quot;racecar&quot;, &quot;car&quot;]</code>   → Output: <code>&quot;&quot;</code></li>
+</ul>
+<p><strong>Constraints</strong></p>
+<ul>
+<li><code>1 ≤ strs.length ≤ 200</code></li>
+<li><code>0 ≤ strs[i].length ≤ 200</code></li>
+<li><code>strs[i]</code> contains only lowercase English letters if non-empty.</li>
+</ul>
+<hr>
+<h2 id="-solution-strategies">👨‍💻 Solution Strategies<a hidden class="anchor" aria-hidden="true" href="#-solution-strategies">#</a></h2>
+<p>We’ll explore and compare five distinct approaches, from brute force to divide &amp; conquer:</p>
+<table>
+  <thead>
+      <tr>
+          <th>#</th>
+          <th>Approach</th>
+          <th>Time Complexity</th>
+          <th>Space</th>
+          <th>Bench Rank</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>Horizontal Scan</td>
+          <td>O(S)</td>
+          <td>O(1)</td>
+          <td>4th</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>Zip-based Scan</td>
+          <td>O(S)</td>
+          <td>O(1)</td>
+          <td>3rd</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>Binary Search on Prefix Length</td>
+          <td>O(S·log m)</td>
+          <td>O(1)</td>
+          <td>2nd</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Sort &amp; Compare (first vs last)</td>
+          <td>O(n·m + n log n)</td>
+          <td>O(1)</td>
+          <td><strong>1st</strong></td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>Divide &amp; Conquer</td>
+          <td>O(S·log n)</td>
+          <td>O(log n)</td>
+          <td>5th</td>
+      </tr>
+  </tbody>
+</table>
+<p>Where:</p>
+<ul>
+<li>n = number of strings</li>
+<li>m = length of the shortest string</li>
+<li>S = total number of characters across all strings</li>
+</ul>
+<hr>
+<h2 id="-detailed-breakdown">📝 Detailed Breakdown<a hidden class="anchor" aria-hidden="true" href="#-detailed-breakdown">#</a></h2>
+<h3 id="1-horizontal-scan">1. Horizontal Scan<a hidden class="anchor" aria-hidden="true" href="#1-horizontal-scan">#</a></h3>
+<p>Compare each character position across all strings until a mismatch occurs.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_len</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ch</span> <span class="o">=</span> <span class="n">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">ch</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">strs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prefix</span> <span class="o">+=</span> <span class="n">ch</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span></code></pre></div><p>👍 <strong>When to use</strong>: Very small input size or whiteboard interviews—simple and intuitive.</p>
+<hr>
+<h3 id="2-zip-based-scan">2. Zip-based Scan<a hidden class="anchor" aria-hidden="true" href="#2-zip-based-scan">#</a></h3>
+<p>Transpose the list of strings with <code>zip(*strs)</code> and use <code>set</code> to detect divergence.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">letters</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">strs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">letters</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prefix</span> <span class="o">+=</span> <span class="n">letters</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span></code></pre></div><p>👍 <strong>When to use</strong>: Clean Pythonic code; moderate input sizes, readability prioritized.</p>
+<hr>
+<h3 id="3-binary-search-on-prefix-length">3. Binary Search on Prefix Length<a hidden class="anchor" aria-hidden="true" href="#3-binary-search-on-prefix-length">#</a></h3>
+<p>Binary‐search the possible prefix length range [1..min_len], validating with <code>startswith()</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">min_len</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">is_common_prefix</span><span class="p">(</span><span class="n">mid</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">best</span> <span class="o">=</span> <span class="n">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="n">mid</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span></code></pre></div><p>👍 <strong>When to use</strong>: Strings are long (large m), and individual comparisons are expensive.</p>
+<hr>
+<h3 id="4-sort--compare-first-vs-last">4. Sort &amp; Compare (First vs Last)<a hidden class="anchor" aria-hidden="true" href="#4-sort--compare-first-vs-last">#</a></h3>
+<p>Sort <code>strs</code> lexicographically; only the first and last items need comparison.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">strs</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">strs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">strs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">a</span> <span class="o">!=</span> <span class="n">b</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">first</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">return</span> <span class="n">first</span>
+</span></span></code></pre></div><p>👍 <strong>When to use</strong>: Default choice—smallest code footprint and best benchmark performance.</p>
+<hr>
+<h3 id="5-divide--conquer">5. Divide &amp; Conquer<a hidden class="anchor" aria-hidden="true" href="#5-divide--conquer">#</a></h3>
+<p>Recursively split the array, compute LCP for each half, then merge.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">lcp_range</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">strs</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">    <span class="n">left</span> <span class="o">=</span> <span class="n">lcp_range</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">right</span> <span class="o">=</span> <span class="n">lcp_range</span><span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># merge two prefixes</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">common_prefix</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</span></span></code></pre></div><p>👍 <strong>When to use</strong>: Academic deep dives or parallel execution frameworks.</p>
+<hr>
+<h2 id="-benchmark-results">📊 Benchmark Results<a hidden class="anchor" aria-hidden="true" href="#-benchmark-results">#</a></h2>
+<p>Average runtime per call (seconds):</p>
+<table>
+  <thead>
+      <tr>
+          <th>n</th>
+          <th>Sort &amp; Compare</th>
+          <th>Binary Search</th>
+          <th>Zip Scan</th>
+          <th>Horizontal Scan</th>
+          <th>Divide &amp; Conquer</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>10</td>
+          <td>0.000012</td>
+          <td>0.000012</td>
+          <td>0.000021</td>
+          <td>0.000078</td>
+          <td>0.000061</td>
+      </tr>
+      <tr>
+          <td>100</td>
+          <td>0.000012</td>
+          <td>0.000034</td>
+          <td>0.000106</td>
+          <td>0.000424</td>
+          <td>0.000692</td>
+      </tr>
+      <tr>
+          <td>500</td>
+          <td>0.000017</td>
+          <td>0.000177</td>
+          <td>0.000546</td>
+          <td>0.002052</td>
+          <td>0.002920</td>
+      </tr>
+      <tr>
+          <td>1000</td>
+          <td>0.000022</td>
+          <td>0.000390</td>
+          <td>0.001079</td>
+          <td>0.005615</td>
+          <td>0.005845</td>
+      </tr>
+      <tr>
+          <td>2000</td>
+          <td>0.000052</td>
+          <td>0.000723</td>
+          <td>0.002315</td>
+          <td>0.008572</td>
+          <td>0.011302</td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<h2 id="-when-to-use-each-approach">🧑‍🏫 When to Use Each Approach<a hidden class="anchor" aria-hidden="true" href="#-when-to-use-each-approach">#</a></h2>
+<ul>
+<li>Sort &amp; Compare: Go-to for most real-world cases—minimal code, fastest in
+practice.</li>
+<li>Binary Search: When strings are very long and each startswith check is
+expensive.</li>
+<li>Zip-based Scan: Super readable and concise; perfect for moderate input sizes.</li>
+<li>Horizontal Scan: Ultra-clear and memory-light; good for tiny lists or
+interview whiteboard.</li>
+<li>Divide &amp; Conquer: Great for teaching or parallel frameworks—even though
+recursion adds overhead.</li>
+</ul>
+<hr>
+<h2 id="-key-takeaways">💡 Key Takeaways<a hidden class="anchor" aria-hidden="true" href="#-key-takeaways">#</a></h2>
+<ul>
+<li>Constant‐time factors matter: two O(S) scans can differ drastically in practice.</li>
+<li>Benchmark on realistic data shapes before optimizing.</li>
+<li>Keep code simple unless a clear bottleneck exists.</li>
+</ul>
+<hr>
+<h2 id="-time-invested">⏱️ Time Invested<a hidden class="anchor" aria-hidden="true" href="#-time-invested">#</a></h2>
+<ul>
+<li>Analysis &amp; design: 15 min</li>
+<li>Implementation &amp; benchmarking: 30 min</li>
+<li>Writing &amp; review: 10 min</li>
+</ul>
+<p>Total: ~ 55 min</p>
+<hr>
+<h2 id="-resources">🔗 Resources<a hidden class="anchor" aria-hidden="true" href="#-resources">#</a></h2>
+<ul>
+<li><a href="https://leetcode.com/problems/longest-common-prefix/">▶ Run on LeetCode</a></li>
+<li><a href="https://leetcode.com/problems/longest-common-prefix/submissions/1721806526">🔗 My Submission</a></li>
+<li><a href="https://github.com/fredericogago/leetcode/blob/main/src/leetcode/editor/en/%5B14%5DLongest%20Common%20Prefix.py">💻 Source Code on GitHub</a></li>
+</ul>
+<hr>
+<p>✍️ <em>Enjoyed this deep dive? Let’s connect on <a href="https://www.linkedin.com/in/frederico-gago-5849281aa">LinkedIn</a></em> or explore more on <a href="https://github.com/fredericogago/leetcode">GitHub</a>.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/python/">Python</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/leetcode/">Leetcode</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/algorithms/">Algorithms</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/benchmarking/">Benchmarking</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/clean-code/">Clean-Code</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/interview-prep/">Interview-Prep</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://fredericogago.github.io/frederico-gago/posts/python-accounting-automation/">
+    <span class="title">Next »</span>
+    <br>
+    <span>From Spreadsheets to Scripts: My Journey Automating Accounting with Python</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://fredericogago.github.io/frederico-gago/">Frederico Gago – Tech Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
