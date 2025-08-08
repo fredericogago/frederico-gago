@@ -10,5 +10,13 @@ My mission is to redefine the way professionals—especially in accounting and f
 
 This blog is my space to openly share the challenges and triumphs of my technical journey, offering insights and practical examples drawn from real-world experiences. Whether I'm optimizing backend services, designing robust abstractions, or enhancing developer workflows, each post reflects my commitment to continuous growth and excellence.
 
+---
+
+## 📄 Download CV
+- [🇵🇹 CV em Português](/frederico-gago/cv/FredericoGago_CV_PT.pdf)
+- [🇬🇧 CV in English](/frederico-gago/cv/FredericoGago_CV_EN.pdf)
+
+---
+
 Feel free to explore my work on [GitHub](https://github.com/fredericogago) or reach out through [LinkedIn](https://www.linkedin.com/in/frederico-gago-5849281aa).
 Let's connect and build software that makes work not just easier—but truly inspiring.

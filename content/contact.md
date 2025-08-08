@@ -13,3 +13,8 @@ Feel free to reach out through any of the following:
 💻 **GitHub**: [github.com/fredericogago](https://github.com/fredericogago)  
 🧠 **LeetCode**: [leetcode.com/u/fredericogago](https://leetcode.com/u/fredericogago)
 
+---
+
+## 📄 Download CV
+- [🇵🇹 CV em Português](/frederico-gago/cv/FredericoGago_CV_PT.pdf)
+- [🇬🇧 CV in English](/frederico-gago/cv/FredericoGago_CV_EN.pdf)

@@ -8,62 +8,71 @@ canonifyURLs = true
 relativeURLs = false
 
 [params]
-  env = "production"
-  description = "Technical blog on Python 3.13, Clean Architecture, and modern software engineering practices."
-  keywords = ["Python", "Clean Architecture", "Type Hints", "SOLID", "FastAPI", "Portfólio"]
-  author = "Frederico Gago"
+env = "production"
+description = "Technical blog on Python 3.13, Clean Architecture, and modern software engineering practices."
+keywords = ["Python", "Clean Architecture", "Type Hints", "SOLID", "FastAPI", "Portfólio"]
+author = "Frederico Gago"
 
-  ShowReadingTime = true
-  ShowPostNavLinks = true
-  ShowBreadCrumbs = true
-  ShowCodeCopyButtons = true
-  defaultTheme = "auto"
-  mainSections = ["posts"]
-  ShowMenu = true
+ShowReadingTime = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+defaultTheme = "auto"
+mainSections = ["posts"]
+ShowMenu = true
 
-  socialIcons = [
+socialIcons = [
     { name = "github", url = "https://github.com/fredericogago" },
     { name = "linkedin", url = "https://www.linkedin.com/in/frederico-gago-5849281aa" },
-    { name = "leetcode",  url = "https://leetcode.com/u/fredericogago/" }
-  ]
+    { name = "leetcode", url = "https://leetcode.com/u/fredericogago/" }
+]
 
-  [params.profileMode]
-    enabled = true
-    name = "Frederico Gago"
-    subtitle = "Crafting clean, scalable, and impactful software solutions with Python and Clean Architecture."
-    imageUrl = "images/profile.png"
-    imageTitle = "Frederico Gago – Software Developer"
+[params.profileMode]
+enabled = true
+name = "Frederico Gago"
+subtitle = "Crafting clean, scalable, and impactful software solutions with Python and Clean Architecture."
+imageUrl = "images/profile.png"
+imageTitle = "Frederico Gago – Software Developer"
 
-    [[params.profileMode.buttons]]
-      name = "Explore Articles"
-      url = "/posts"
+[[params.profileMode.buttons]]
+name = "Explore Articles"
+url = "/posts"
 
-    [[params.profileMode.buttons]]
-      name = "GitHub"
-      url = "https://github.com/fredericogago"
+[[params.profileMode.buttons]]
+name = "GitHub"
+url = "https://github.com/fredericogago"
+
+[[params.profileMode.buttons]]
+name = "Download CV (PT)"
+url = "/frederico-gago/cv/FredericoGago_CV_PT.pdf"
+
+[[params.profileMode.buttons]]
+name = "Download CV (EN)"
+url = "/frederico-gago/cv/FredericoGago_CV_EN.pdf"
+
 
 [menu]
-  [[menu.main]]
-    identifier = "about"
-    name = "About"
-    url = "/frederico-gago/about/"
-    weight = 1
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/frederico-gago/about/"
+weight = 1
 
-  [[menu.main]]
-    identifier = "contact"
-    name = "Contact"
-    url = "/frederico-gago/contact/"
-    weight = 2
+[[menu.main]]
+identifier = "contact"
+name = "Contact"
+url = "/frederico-gago/contact/"
+weight = 2
 
-  [[menu.main]]
-    identifier = "blog"
-    name = "Blog"
-    url = "/frederico-gago/posts/"
-    weight = 3
+[[menu.main]]
+identifier = "blog"
+name = "Blog"
+url = "/frederico-gago/posts/"
+weight = 3
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+home = ["HTML", "RSS", "JSON"]
 
 [markup]
-  [markup.highlight]
-    noClasses = false
+[markup.highlight]
+noClasses = false
