@@ -8,7 +8,7 @@ categories = ["Engineering", "Automation"]
 slug = "reconciliacao-contribuicoes-erp-portal-python"
 
 [cover]
-image = "/images/cover/reconcile-cover.png"
+image = "images/cover/reconcile-cover.png"
 alt = "Ilustração de reconciliação de dados"
 +++
 
