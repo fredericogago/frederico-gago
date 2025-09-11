@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python | Frederico Gago – Tech Blog</title>
+<meta name="keywords" content="Python, Automação, Contabilidade Digital, FastAPI, Playwright, Clean Architecture">
+<meta name="description" content="Padrões práticos para alinhar duas fontes de dados mensais — com tolerância monetária, concorrência limitada, retries com backoff e upsert idempotente.">
+<meta name="author" content="Frederico Gago">
+<link rel="canonical" href="https://fredericogago.github.io/frederico-gago/posts/reconciliacao-contribuicoes-erp-portal-python/">
+<link crossorigin="anonymous" href="https://fredericogago.github.io/frederico-gago/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://fredericogago.github.io/frederico-gago/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://fredericogago.github.io/frederico-gago/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://fredericogago.github.io/frederico-gago/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://fredericogago.github.io/frederico-gago/apple-touch-icon.png">
+<link rel="mask-icon" href="https://fredericogago.github.io/frederico-gago/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://fredericogago.github.io/frederico-gago/posts/reconciliacao-contribuicoes-erp-portal-python/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://fredericogago.github.io/frederico-gago/posts/reconciliacao-contribuicoes-erp-portal-python/">
+  <meta property="og:site_name" content="Frederico Gago – Tech Blog">
+  <meta property="og:title" content="Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python">
+  <meta property="og:description" content="Padrões práticos para alinhar duas fontes de dados mensais — com tolerância monetária, concorrência limitada, retries com backoff e upsert idempotente.">
+  <meta property="og:locale" content="en-us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-09-11T15:47:39+01:00">
+    <meta property="article:modified_time" content="2025-09-11T15:47:39+01:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Automação">
+    <meta property="article:tag" content="Contabilidade Digital">
+    <meta property="article:tag" content="FastAPI">
+    <meta property="article:tag" content="Playwright">
+    <meta property="article:tag" content="Clean Architecture">
+    <meta property="og:image" content="https://fredericogago.github.io/images/cover/reconcile-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fredericogago.github.io/images/cover/reconcile-cover.png">
+<meta name="twitter:title" content="Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python">
+<meta name="twitter:description" content="Padrões práticos para alinhar duas fontes de dados mensais — com tolerância monetária, concorrência limitada, retries com backoff e upsert idempotente.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Blog",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python",
+      "item": "https://fredericogago.github.io/frederico-gago/posts/reconciliacao-contribuicoes-erp-portal-python/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python",
+  "name": "Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python",
+  "description": "Padrões práticos para alinhar duas fontes de dados mensais — com tolerância monetária, concorrência limitada, retries com backoff e upsert idempotente.",
+  "keywords": [
+    "Python", "Automação", "Contabilidade Digital", "FastAPI", "Playwright", "Clean Architecture"
+  ],
+  "articleBody": " Resumo: Como automatizei a reconciliação mensal de contribuições entre um ERP e um portal externo.\nMostro padrões reutilizáveis: bounded concurrency, retry com backoff + jitter, tolerância monetária, bucketização por período+taxa e upsert idempotente de divergências — usando value objects (YearMonth, Money) e ports (interfaces).\nSem expor integrações reais: o foco é a arquitetura e as ideias reutilizáveis.\n⚙️ Contexto \u0026 Problema Em RH, após o processamento salarial (até dia 10 em PT), é enviado o mapa de contribuições do mês anterior para o portal oficial.\nSe ocorrerem alterações após o envio (ajustes, faltas, prémios, correções), é fácil esquecer o reenvio do mapa corrigido — gerando inconsistências com risco regulatório e retrabalho.\nObjetivo: conferir mensalmente se o que está no ERP bate com o portal externo, sinalizando divergências de forma automática, rápida e auditável.\nTempo poupado médio (por empresa/mês): ~5 min (quando existia política de conferência manual). Redução de falhas humanas: eliminação de esquecimentos sistemáticos. Base para alertas e relatórios automáticos. Nota: este artigo não é aconselhamento jurídico; o foco é reduzir risco operacional e facilitar conformidade.\n🧱 Padrões Arquiteturais (reutilizáveis) Value Objects YearMonth (faixas, ordenação, últimos 12 meses concluídos…) Money (moeda, aritmética segura, formatação PT) Bucketização por (ano, mês, taxa) antes de comparar. Tolerância monetária para evitar falsos positivos por arredondamentos. Concorrência limitada (bounded semaphores) para proteger recursos (DB/ERP/Browser). Retry com backoff exponencial + jitter para chamadas mais frágeis (portal). Upsert idempotente de divergências (grava/atualiza só se mudou). Ports/Adapters: IErpService, IPortalService, IRepo. 🧩 Value Objects (excerto) YearMonth (intervalos de 12 meses concluídos, ordenação, formatação):\n@dataclass(frozen=True) class YearMonth: year: int month: int fmt: str = field(default=\"%Y-%m\", repr=False) # ... validação, formatted, parse, range, comparação, last_12_completed_months() ... Money (inteiros em cêntimos, aritmética segura, formatação PT):\n@dataclass(frozen=True) class Money: amount_cents: int original: str input_value: Any currency: CurrencyCode = CurrencyCode.EUR # .amount -\u003e Decimal, from_raw(), +, -, *, /, format_pt(), parse_percentage() ... Estes VOs isolam complexidade de datas mensais e quantias monetárias (arredondamentos, parsing, igualdade), reduzindo bugs na reconciliação.\n🔌 Portas (interfaces) \u0026 DTOs Divergência (DTO) — “fotografia” estável p/ persistir e reportar @dataclass(frozen=True) class MismatchDTO: company: CompanyRef period: YearMonth erp_remuneration: Money portal_remuneration: Money erp_contribution: Money portal_contribution: Money difference: Money tax: Decimal Repositório (abstrato) — garante upsert idempotente e consultas class IRepo(..., ABC): @abstractmethod async def upsert_contribution_if_changed(self, entity: Contribution) -\u003e tuple[Contribution, bool]: ... @abstractmethod async def get_contributions_that_are_not_yet_checked_with_relationship(self, **filters) -\u003e list[Contribution]: ... # ... outros métodos ... ERP (agrega por período) @dataclass(frozen=True, slots=True) class ContributionByPeriod: period: YearMonth type_of_contribution: int total_rem: Money tax_employee: Decimal tax_employer: Decimal total_contribution: Money Portal (agrega por taxa) @dataclass(frozen=True, slots=True) class ContributionByTax: period: YearMonth remuneration: Money tax: Decimal contribution: Money 🧠 Algoritmo (alto nível) Janela temporal: últimos 12 meses concluídos (YearMonth.last_12_completed_months()). Obter dados: ERP: ContributionByPeriod (taxa = empregado + entidade) Portal: ContributionByTax Bucketizar por (ano, mês, taxa): ERP: soma de total_rem e total_contribution Portal: soma de remuneration e contribution Comparar com tolerância: Se |erp_rem - portal_rem| \u003c= tol e |erp_con - portal_con| \u003c= tol → OK Caso contrário → MismatchDTO Upsert idempotente: gravar/atualizar divergências só se mudaram. Opcional: emitir eventos (relatório de RH, erros, métricas). 🧵 Concorrência \u0026 Retry (exemplo simplificado) class ReconcileService: def __init__(..., max_portal=2, max_erp=1, attempts=3, base=1.0, jitter=0.3, tol_eur=Decimal(\"0.50\")): self._portal_sem = asyncio.BoundedSemaphore(max_portal) self._erp_sem = asyncio.BoundedSemaphore(max_erp) self._attempts, self._base, self._jitter = attempts, base, jitter self._tol = tol_eur async def _portal_with_retry(self, portal, start, end): async with self._portal_sem: attempt = 0 while True: try: return await portal.get_contributions_by_tax(start, end) except Exception: attempt += 1 if attempt \u003e= self._attempts: raise delay = self._base * (2 ** (attempt - 1)) + random.uniform(0, self._jitter) await asyncio.sleep(delay) def _close(self, a: Money, b: Money) -\u003e bool: return abs(a.amount - b.amount) \u003c= self._tol Porque assim?\nSemáforos evitam saturar BD/ERP/sessões de browser. Retry com backoff + jitter suaviza “picos” e lida melhor com limitações/captcha. Tolerância monetária reduz falsos positivos por arredondamentos. 📊 Exemplo de Comparação (core da decisão) def compare(company: CompanyRef, period: YearMonth, tax: Decimal, erp_rem: Money, erp_con: Money, por_rem: Money, por_con: Money, tol: Decimal) -\u003e MismatchDTO | None: rem_close = abs(erp_rem.amount - por_rem.amount) \u003c= tol con_close = abs(erp_con.amount - por_con.amount) \u003c= tol if rem_close and con_close: return None return MismatchDTO( company=company, period=period, tax=tax, erp_remuneration=erp_rem, portal_remuneration=por_rem, erp_contribution=erp_con, portal_contribution=por_con, difference=(por_con - erp_con), ) ✅ Resultados (exemplo realista) Tempo: ~5 min poupados por empresa/mês quando havia conferência manual.\nQualidade: menos esquecimentos de reenvio; divergências explícitas e auditáveis.\nEscalabilidade: processa várias empresas em paralelo (concorrência limitada).\nExtensível: serve de padrão para outras reconciliações (IVA, retenções, bancos).\nMétricas exatas variam por contexto; percentagens e tempos acima são indicativos.\n🔒 Privacidade \u0026 Segurança Não exponho endpoints nem selectors do portal/ERP. Exemplos usam dados fictícios e adapters genéricos. O “core” de integrações (autenticação, Playwright, queries) permanece privado. 🛠️ Roadmap (ideias futuras) Painel com alertas por empresa/período. Auto-retry programado e digest semanal de divergências. Geração de relatórios PDF/Excel para auditoria. Integração com fila de tarefas (ex.: Celery/RQ) e notificações (e-mail/Teams). 📦 Como reutilizar os padrões Leva os Value Objects YearMonth e Money para o teu domínio. Cria ports (IErpService, IPortalService, IRepo) e implementa adapters locais. Aplica bucketização + tolerância antes de comparar. Usa semáforos separados por recurso e retry com backoff+jitter para o alvo mais instável. Upsert idempotente em repositório para não duplicar divergências. 💬 Fala comigo Trabalhas em contabilidade/fintech e queres explorar automação de reconciliações (SAF-T, contribuições, retenções, bancos, etc.)?\nAdoro transformar processos repetitivos em sistemas robustos e auditáveis.\nLinkedIn: linkedin.com/in/frederico-gago-5849281aa GitHub: github.com/fredericogago ",
+  "wordCount" : "875",
+  "inLanguage": "en",
+  "image":"https://fredericogago.github.io/images/cover/reconcile-cover.png","datePublished": "2025-09-11T15:47:39+01:00",
+  "dateModified": "2025-09-11T15:47:39+01:00",
+  "author":{
+    "@type": "Person",
+    "name": "Frederico Gago"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://fredericogago.github.io/frederico-gago/posts/reconciliacao-contribuicoes-erp-portal-python/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Frederico Gago – Tech Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://fredericogago.github.io/frederico-gago/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://fredericogago.github.io/frederico-gago/" accesskey="h" title="Frederico Gago – Tech Blog (Alt + H)">Frederico Gago – Tech Blog</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/about/" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/contact/" title="Contact">
+                    <span>Contact</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://fredericogago.github.io/frederico-gago/posts/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://fredericogago.github.io/frederico-gago/">Home</a>&nbsp;»&nbsp;<a href="https://fredericogago.github.io/frederico-gago/posts/">Blog</a></div>
+    <h1 class="post-title entry-hint-parent">
+      Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python
+    </h1>
+    <div class="post-description">
+      Padrões práticos para alinhar duas fontes de dados mensais — com tolerância monetária, concorrência limitada, retries com backoff e upsert idempotente.
+    </div>
+    <div class="post-meta"><span title='2025-09-11 15:47:39 +0100 WEST'>September 11, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Frederico Gago
+
+</div>
+  </header> 
+<figure class="entry-cover">
+        <img loading="eager" src="https://fredericogago.github.io/images/cover/reconcile-cover.png" alt="Ilustração de reconciliação de dados">
+        
+</figure>
+  <div class="post-content"><blockquote>
+<p><strong>Resumo:</strong> Como automatizei a reconciliação mensal de contribuições entre um ERP e um portal externo.<br>
+Mostro <strong>padrões reutilizáveis</strong>: <em>bounded concurrency</em>, <em>retry</em> com backoff + jitter, <strong>tolerância monetária</strong>, <strong>bucketização por período+taxa</strong> e <strong>upsert idempotente</strong> de divergências — usando <em>value objects</em> (<code>YearMonth</code>, <code>Money</code>) e <em>ports</em> (interfaces).<br>
+<strong>Sem expor integrações reais</strong>: o foco é a arquitetura e as ideias reutilizáveis.</p></blockquote>
+<hr>
+<h2 id="-contexto--problema">⚙️ Contexto &amp; Problema<a hidden class="anchor" aria-hidden="true" href="#-contexto--problema">#</a></h2>
+<p>Em RH, após o processamento salarial (até dia 10 em PT), é enviado o mapa de contribuições do mês anterior para o portal oficial.<br>
+Se ocorrerem <strong>alterações</strong> após o envio (ajustes, faltas, prémios, correções), é <strong>fácil esquecer</strong> o reenvio do mapa corrigido — gerando <strong>inconsistências</strong> com risco regulatório e retrabalho.</p>
+<p><strong>Objetivo:</strong> conferir <strong>mensalmente</strong> se o que está no ERP <strong>bate</strong> com o portal externo, sinalizando divergências de forma <strong>automática</strong>, rápida e auditável.</p>
+<ul>
+<li>Tempo poupado médio (por empresa/mês): ~<strong>5 min</strong> (quando existia política de conferência manual).</li>
+<li>Redução de falhas humanas: <strong>eliminação</strong> de esquecimentos sistemáticos.</li>
+<li>Base para <strong>alertas</strong> e <strong>relatórios</strong> automáticos.</li>
+</ul>
+<blockquote>
+<p>Nota: este artigo não é aconselhamento jurídico; o foco é reduzir risco operacional e facilitar conformidade.</p></blockquote>
+<hr>
+<h2 id="-padrões-arquiteturais-reutilizáveis">🧱 Padrões Arquiteturais (reutilizáveis)<a hidden class="anchor" aria-hidden="true" href="#-padrões-arquiteturais-reutilizáveis">#</a></h2>
+<ul>
+<li><strong>Value Objects</strong>
+<ul>
+<li><code>YearMonth</code> (faixas, ordenação, últimos 12 meses concluídos…)</li>
+<li><code>Money</code> (moeda, aritmética segura, formatação PT)</li>
+</ul>
+</li>
+<li><strong>Bucketização</strong> por <code>(ano, mês, taxa)</code> antes de comparar.</li>
+<li><strong>Tolerância monetária</strong> para evitar falsos positivos por arredondamentos.</li>
+<li><strong>Concorrência limitada</strong> (<em>bounded semaphores</em>) para proteger recursos (DB/ERP/Browser).</li>
+<li><strong>Retry</strong> com backoff exponencial + jitter para chamadas mais frágeis (portal).</li>
+<li><strong>Upsert idempotente</strong> de divergências (grava/atualiza só se mudou).</li>
+<li><strong>Ports/Adapters</strong>: <code>IErpService</code>, <code>IPortalService</code>, <code>IRepo</code>.</li>
+</ul>
+<hr>
+<h2 id="-value-objects-excerto">🧩 Value Objects (excerto)<a hidden class="anchor" aria-hidden="true" href="#-value-objects-excerto">#</a></h2>
+<p><strong><code>YearMonth</code></strong> (intervalos de 12 meses concluídos, ordenação, formatação):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">YearMonth</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">year</span><span class="p">:</span> <span class="nb">int</span>
+</span></span><span class="line"><span class="cl">    <span class="n">month</span><span class="p">:</span> <span class="nb">int</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fmt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&#34;%Y-%m&#34;</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># ... validação, formatted, parse, range, comparação, last_12_completed_months() ...</span>
+</span></span></code></pre></div><p><strong><code>Money</code></strong> (inteiros em cêntimos, aritmética segura, formatação PT):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Money</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">amount_cents</span><span class="p">:</span> <span class="nb">int</span>
+</span></span><span class="line"><span class="cl">    <span class="n">original</span><span class="p">:</span> <span class="nb">str</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input_value</span><span class="p">:</span> <span class="n">Any</span>
+</span></span><span class="line"><span class="cl">    <span class="n">currency</span><span class="p">:</span> <span class="n">CurrencyCode</span> <span class="o">=</span> <span class="n">CurrencyCode</span><span class="o">.</span><span class="n">EUR</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># .amount -&gt; Decimal, from_raw(), +, -, *, /, format_pt(), parse_percentage() ...</span>
+</span></span></code></pre></div><p>Estes VOs isolam complexidade de datas mensais e quantias monetárias (arredondamentos, parsing, igualdade), reduzindo bugs na reconciliação.</p>
+<hr>
+<h1 id="-portas-interfaces--dtos">🔌 Portas (interfaces) &amp; DTOs<a hidden class="anchor" aria-hidden="true" href="#-portas-interfaces--dtos">#</a></h1>
+<h1 id="divergência-dto--fotografia-estável-p-persistir-e-reportar">Divergência (DTO) — “fotografia” estável p/ persistir e reportar<a hidden class="anchor" aria-hidden="true" href="#divergência-dto--fotografia-estável-p-persistir-e-reportar">#</a></h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">MismatchDTO</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">company</span><span class="p">:</span> <span class="n">CompanyRef</span>
+</span></span><span class="line"><span class="cl">    <span class="n">period</span><span class="p">:</span> <span class="n">YearMonth</span>
+</span></span><span class="line"><span class="cl">    <span class="n">erp_remuneration</span><span class="p">:</span> <span class="n">Money</span>
+</span></span><span class="line"><span class="cl">    <span class="n">portal_remuneration</span><span class="p">:</span> <span class="n">Money</span>
+</span></span><span class="line"><span class="cl">    <span class="n">erp_contribution</span><span class="p">:</span> <span class="n">Money</span>
+</span></span><span class="line"><span class="cl">    <span class="n">portal_contribution</span><span class="p">:</span> <span class="n">Money</span>
+</span></span><span class="line"><span class="cl">    <span class="n">difference</span><span class="p">:</span> <span class="n">Money</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tax</span><span class="p">:</span> <span class="n">Decimal</span>
+</span></span></code></pre></div><h1 id="repositório-abstrato--garante-upsert-idempotente-e-consultas">Repositório (abstrato) — garante upsert idempotente e consultas<a hidden class="anchor" aria-hidden="true" href="#repositório-abstrato--garante-upsert-idempotente-e-consultas">#</a></h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">IRepo</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">async</span> <span class="k">def</span> <span class="nf">upsert_contribution_if_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entity</span><span class="p">:</span> <span class="n">Contribution</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Contribution</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@abstractmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">async</span> <span class="k">def</span> <span class="nf">get_contributions_that_are_not_yet_checked_with_relationship</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">filters</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Contribution</span><span class="p">]:</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># ... outros métodos ...</span>
+</span></span></code></pre></div><h1 id="erp-agrega-por-período">ERP (agrega por período)<a hidden class="anchor" aria-hidden="true" href="#erp-agrega-por-período">#</a></h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ContributionByPeriod</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">period</span><span class="p">:</span> <span class="n">YearMonth</span>
+</span></span><span class="line"><span class="cl">    <span class="n">type_of_contribution</span><span class="p">:</span> <span class="nb">int</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total_rem</span><span class="p">:</span> <span class="n">Money</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tax_employee</span><span class="p">:</span> <span class="n">Decimal</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tax_employer</span><span class="p">:</span> <span class="n">Decimal</span>
+</span></span><span class="line"><span class="cl">    <span class="n">total_contribution</span><span class="p">:</span> <span class="n">Money</span>
+</span></span></code></pre></div><h1 id="portal-agrega-por-taxa">Portal (agrega por taxa)<a hidden class="anchor" aria-hidden="true" href="#portal-agrega-por-taxa">#</a></h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ContributionByTax</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">period</span><span class="p">:</span> <span class="n">YearMonth</span>
+</span></span><span class="line"><span class="cl">    <span class="n">remuneration</span><span class="p">:</span> <span class="n">Money</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tax</span><span class="p">:</span> <span class="n">Decimal</span>
+</span></span><span class="line"><span class="cl">    <span class="n">contribution</span><span class="p">:</span> <span class="n">Money</span>
+</span></span></code></pre></div><hr>
+<h1 id="-algoritmo-alto-nível">🧠 Algoritmo (alto nível)<a hidden class="anchor" aria-hidden="true" href="#-algoritmo-alto-nível">#</a></h1>
+<ol>
+<li><strong>Janela temporal:</strong> últimos 12 meses concluídos (<code>YearMonth.last_12_completed_months()</code>).</li>
+<li><strong>Obter dados:</strong>
+<ul>
+<li>ERP: <code>ContributionByPeriod</code> (taxa = empregado + entidade)</li>
+<li>Portal: <code>ContributionByTax</code></li>
+</ul>
+</li>
+<li><strong>Bucketizar</strong> por <code>(ano, mês, taxa)</code>:
+<ul>
+<li>ERP: soma de <code>total_rem</code> e <code>total_contribution</code></li>
+<li>Portal: soma de <code>remuneration</code> e <code>contribution</code></li>
+</ul>
+</li>
+<li><strong>Comparar com tolerância:</strong>
+<ul>
+<li>Se <code>|erp_rem - portal_rem| &lt;= tol</code> e <code>|erp_con - portal_con| &lt;= tol</code> → OK</li>
+<li>Caso contrário → <strong>MismatchDTO</strong></li>
+</ul>
+</li>
+<li><strong>Upsert idempotente:</strong> gravar/atualizar divergências só se mudaram.</li>
+<li><strong>Opcional:</strong> emitir eventos (relatório de RH, erros, métricas).</li>
+</ol>
+<h1 id="-concorrência--retry-exemplo-simplificado">🧵 Concorrência &amp; Retry (exemplo simplificado)<a hidden class="anchor" aria-hidden="true" href="#-concorrência--retry-exemplo-simplificado">#</a></h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">ReconcileService</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">max_portal</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_erp</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">attempts</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">jitter</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">tol_eur</span><span class="o">=</span><span class="n">Decimal</span><span class="p">(</span><span class="s2">&#34;0.50&#34;</span><span class="p">)):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_portal_sem</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">BoundedSemaphore</span><span class="p">(</span><span class="n">max_portal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_erp_sem</span>    <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">BoundedSemaphore</span><span class="p">(</span><span class="n">max_erp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_attempts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_jitter</span> <span class="o">=</span> <span class="n">attempts</span><span class="p">,</span> <span class="n">base</span><span class="p">,</span> <span class="n">jitter</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_tol</span> <span class="o">=</span> <span class="n">tol_eur</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">async</span> <span class="k">def</span> <span class="nf">_portal_with_retry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">portal</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">async</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_portal_sem</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">attempt</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="k">await</span> <span class="n">portal</span><span class="o">.</span><span class="n">get_contributions_by_tax</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">attempt</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="n">attempt</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attempts</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">raise</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">delay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="p">(</span><span class="n">attempt</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_jitter</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">delay</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">_close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Money</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">Money</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">amount</span> <span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="n">amount</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tol</span>
+</span></span></code></pre></div><p><strong>Porque assim?</strong></p>
+<ul>
+<li>Semáforos evitam saturar BD/ERP/sessões de browser.</li>
+<li>Retry com backoff + jitter suaviza “picos” e lida melhor com limitações/captcha.</li>
+<li>Tolerância monetária reduz falsos positivos por arredondamentos.</li>
+</ul>
+<h1 id="-exemplo-de-comparação-core-da-decisão">📊 Exemplo de Comparação (core da decisão)<a hidden class="anchor" aria-hidden="true" href="#-exemplo-de-comparação-core-da-decisão">#</a></h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">compare</span><span class="p">(</span><span class="n">company</span><span class="p">:</span> <span class="n">CompanyRef</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="n">YearMonth</span><span class="p">,</span> <span class="n">tax</span><span class="p">:</span> <span class="n">Decimal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">erp_rem</span><span class="p">:</span> <span class="n">Money</span><span class="p">,</span> <span class="n">erp_con</span><span class="p">:</span> <span class="n">Money</span><span class="p">,</span> <span class="n">por_rem</span><span class="p">:</span> <span class="n">Money</span><span class="p">,</span> <span class="n">por_con</span><span class="p">:</span> <span class="n">Money</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tol</span><span class="p">:</span> <span class="n">Decimal</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MismatchDTO</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">rem_close</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">erp_rem</span><span class="o">.</span><span class="n">amount</span> <span class="o">-</span> <span class="n">por_rem</span><span class="o">.</span><span class="n">amount</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">tol</span>
+</span></span><span class="line"><span class="cl">    <span class="n">con_close</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">erp_con</span><span class="o">.</span><span class="n">amount</span> <span class="o">-</span> <span class="n">por_con</span><span class="o">.</span><span class="n">amount</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">tol</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">rem_close</span> <span class="ow">and</span> <span class="n">con_close</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">MismatchDTO</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">company</span><span class="o">=</span><span class="n">company</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="n">period</span><span class="p">,</span> <span class="n">tax</span><span class="o">=</span><span class="n">tax</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">erp_remuneration</span><span class="o">=</span><span class="n">erp_rem</span><span class="p">,</span> <span class="n">portal_remuneration</span><span class="o">=</span><span class="n">por_rem</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">erp_contribution</span><span class="o">=</span><span class="n">erp_con</span><span class="p">,</span> <span class="n">portal_contribution</span><span class="o">=</span><span class="n">por_con</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">difference</span><span class="o">=</span><span class="p">(</span><span class="n">por_con</span> <span class="o">-</span> <span class="n">erp_con</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></div><hr>
+<h1 id="-resultados-exemplo-realista">✅ Resultados (exemplo realista)<a hidden class="anchor" aria-hidden="true" href="#-resultados-exemplo-realista">#</a></h1>
+<ul>
+<li>
+<p><strong>Tempo:</strong> ~5 min poupados por empresa/mês quando havia conferência manual.</p>
+</li>
+<li>
+<p><strong>Qualidade:</strong> menos esquecimentos de reenvio; divergências explícitas e auditáveis.</p>
+</li>
+<li>
+<p><strong>Escalabilidade:</strong> processa várias empresas em paralelo (concorrência limitada).</p>
+</li>
+<li>
+<p><strong>Extensível:</strong> serve de padrão para outras reconciliações (IVA, retenções, bancos).</p>
+<p>Métricas exatas variam por contexto; percentagens e tempos acima são indicativos.</p>
+</li>
+</ul>
+<hr>
+<h1 id="-privacidade--segurança">🔒 Privacidade &amp; Segurança<a hidden class="anchor" aria-hidden="true" href="#-privacidade--segurança">#</a></h1>
+<ul>
+<li>Não exponho endpoints nem selectors do portal/ERP.</li>
+<li>Exemplos usam <strong>dados fictícios e adapters</strong> genéricos.</li>
+<li>O “core” de integrações (autenticação, Playwright, queries) permanece privado.</li>
+</ul>
+<hr>
+<h1 id="-roadmap-ideias-futuras">🛠️ Roadmap (ideias futuras)<a hidden class="anchor" aria-hidden="true" href="#-roadmap-ideias-futuras">#</a></h1>
+<ul>
+<li>Painel com <strong>alertas</strong> por empresa/período.</li>
+<li><strong>Auto-retry</strong> programado e digest semanal de divergências.</li>
+<li>Geração de relatórios <strong>PDF/Excel</strong> para auditoria.</li>
+<li>Integração com <strong>fila de tarefas</strong> (ex.: Celery/RQ) e notificações (e-mail/Teams).</li>
+</ul>
+<hr>
+<h1 id="-como-reutilizar-os-padrões">📦 Como reutilizar os padrões<a hidden class="anchor" aria-hidden="true" href="#-como-reutilizar-os-padrões">#</a></h1>
+<ul>
+<li>Leva os <strong>Value Objects</strong> YearMonth e Money para o teu domínio.</li>
+<li>Cria ports (<code>IErpService</code>, <code>IPortalService</code>, <code>IRepo</code>) e implementa adapters locais.</li>
+<li>Aplica bucketização + tolerância antes de comparar.</li>
+<li>Usa semáforos separados por recurso e retry com backoff+jitter para o alvo mais instável.</li>
+<li>Upsert idempotente em repositório para não duplicar divergências.</li>
+</ul>
+<hr>
+<h1 id="-fala-comigo">💬 Fala comigo<a hidden class="anchor" aria-hidden="true" href="#-fala-comigo">#</a></h1>
+<p>Trabalhas em contabilidade/fintech e queres explorar <strong>automação de reconciliações</strong> (SAF-T, contribuições, retenções, bancos, etc.)?</p>
+<p>Adoro transformar processos repetitivos em <strong>sistemas robustos e auditáveis.</strong></p>
+<ul>
+<li><strong>LinkedIn:</strong> linkedin.com/in/frederico-gago-5849281aa</li>
+<li><strong>GitHub:</strong> github.com/fredericogago</li>
+</ul>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/python/">Python</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/automa%C3%A7%C3%A3o/">Automação</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/contabilidade-digital/">Contabilidade Digital</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/fastapi/">FastAPI</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/playwright/">Playwright</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/clean-architecture/">Clean Architecture</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="next" href="https://fredericogago.github.io/frederico-gago/posts/longest-common-prefix/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Longest Common Prefix: Five Algorithms Compared</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="https://fredericogago.github.io/frederico-gago/">Frederico Gago – Tech Blog</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

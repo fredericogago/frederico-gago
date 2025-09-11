@@ -135,6 +135,26 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://fredericogago.github.io/images/cover/reconcile-cover.png" alt="Ilustração de reconciliação de dados">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Resumo: Como automatizei a reconciliação mensal de contribuições entre um ERP e um portal externo.
+Mostro padrões reutilizáveis: bounded concurrency, retry com backoff &#43; jitter, tolerância monetária, bucketização por período&#43;taxa e upsert idempotente de divergências — usando value objects (YearMonth, Money) e ports (interfaces).
+Sem expor integrações reais: o foco é a arquitetura e as ideias reutilizáveis.
+⚙️ Contexto &amp; Problema Em RH, após o processamento salarial (até dia 10 em PT), é enviado o mapa de contribuições do mês anterior para o portal oficial.
+Se ocorrerem alterações após o envio (ajustes, faltas, prémios, correções), é fácil esquecer o reenvio do mapa corrigido — gerando inconsistências com risco regulatório e retrabalho.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-09-11 15:47:39 +0100 WEST'>September 11, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Frederico Gago</footer>
+  <a class="entry-link" aria-label="post link to Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python" href="https://fredericogago.github.io/frederico-gago/posts/reconciliacao-contribuicoes-erp-portal-python/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://fredericogago.github.io/frederico-gago/images/cover/python-contabilidade.png" alt="Cover Image">
 </figure>
   <header class="entry-header">

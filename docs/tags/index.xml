@@ -6,8 +6,50 @@
     <description>Recent content in Tags on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Aug 2025 12:33:27 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 11 Sep 2025 15:47:39 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automação</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/automa%C3%A7%C3%A3o/</link>
+      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/automa%C3%A7%C3%A3o/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Clean Architecture</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/clean-architecture/</link>
+      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/clean-architecture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Contabilidade Digital</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/contabilidade-digital/</link>
+      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/contabilidade-digital/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>FastAPI</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/fastapi/</link>
+      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/fastapi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Playwright</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/playwright/</link>
+      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/playwright/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/python/</link>
+      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/python/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Algorithms</title>
       <link>https://fredericogago.github.io/frederico-gago/tags/algorithms/</link>
@@ -41,13 +83,6 @@
       <link>https://fredericogago.github.io/frederico-gago/tags/leetcode/</link>
       <pubDate>Sun, 03 Aug 2025 12:33:27 +0100</pubDate>
       <guid>https://fredericogago.github.io/frederico-gago/tags/leetcode/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>https://fredericogago.github.io/frederico-gago/tags/python/</link>
-      <pubDate>Sun, 03 Aug 2025 12:33:27 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/tags/python/</guid>
       <description></description>
     </item>
     <item>
