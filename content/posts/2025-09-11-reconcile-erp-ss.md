@@ -245,6 +245,6 @@ Trabalhas em contabilidade/fintech e queres explorar **automação de reconcilia
 
 Adoro transformar processos repetitivos em **sistemas robustos e auditáveis.**
 
-* **LinkedIn:** linkedin.com/in/frederico-gago-5849281aa
-* **GitHub:** github.com/fredericogago
+* [LinkedIn](https://www.linkedin.com/in/frederico-gago-5849281aa)
+* [GitHub](https://github.com/fredericogago)
 
