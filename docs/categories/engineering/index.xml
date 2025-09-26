@@ -6,8 +6,15 @@
     <description>Recent content in Engineering on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Sep 2025 15:47:39 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 26 Sep 2025 07:54:52 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/categories/engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox</title>
+      <link>https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/</link>
+      <pubDate>Fri, 26 Sep 2025 07:54:52 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/</guid>
+      <description>Como desenhei um UoW assíncrono e escalável com SQLAlchemy: fronteira transacional explícita, nesting com savepoints, outbox transacional, idempotência, e um gestor que funciona em API, CLI e workers.</description>
+    </item>
     <item>
       <title>Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python</title>
       <link>https://fredericogago.github.io/frederico-gago/posts/reconciliacao-contribuicoes-erp-portal-python/</link>

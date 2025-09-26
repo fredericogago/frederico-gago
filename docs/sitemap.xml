@@ -2,43 +2,61 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/architecture/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/arquitetura/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/posts/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/clean-architecture/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/engineering/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/fastapi/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/persistence/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/python/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/sqlalchemy/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/unit-of-work/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/</loc>
+    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
+  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/automa%C3%A7%C3%A3o/</loc>
     <lastmod>2025-09-11T15:47:39+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/categories/automation/</loc>
     <lastmod>2025-09-11T15:47:39+01:00</lastmod>
   </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/posts/</loc>
-    <lastmod>2025-09-11T15:47:39+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/categories/</loc>
-    <lastmod>2025-09-11T15:47:39+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/clean-architecture/</loc>
-    <lastmod>2025-09-11T15:47:39+01:00</lastmod>
-  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/contabilidade-digital/</loc>
-    <lastmod>2025-09-11T15:47:39+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/categories/engineering/</loc>
-    <lastmod>2025-09-11T15:47:39+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/fastapi/</loc>
-    <lastmod>2025-09-11T15:47:39+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/</loc>
     <lastmod>2025-09-11T15:47:39+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/playwright/</loc>
     <lastmod>2025-09-11T15:47:39+01:00</lastmod>
   </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/python/</loc>
-    <lastmod>2025-09-11T15:47:39+01:00</lastmod>
-  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/posts/reconciliacao-contribuicoes-erp-portal-python/</loc>
-    <lastmod>2025-09-11T15:47:39+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/</loc>
     <lastmod>2025-09-11T15:47:39+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/categories/algorithms/</loc>

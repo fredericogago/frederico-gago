@@ -6,20 +6,55 @@
     <description>Recent content in Tags on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Sep 2025 15:47:39 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 26 Sep 2025 07:54:52 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Automação</title>
-      <link>https://fredericogago.github.io/frederico-gago/tags/automa%C3%A7%C3%A3o/</link>
-      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/tags/automa%C3%A7%C3%A3o/</guid>
+      <title>Arquitetura</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/arquitetura/</link>
+      <pubDate>Fri, 26 Sep 2025 07:54:52 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/arquitetura/</guid>
       <description></description>
     </item>
     <item>
       <title>Clean Architecture</title>
       <link>https://fredericogago.github.io/frederico-gago/tags/clean-architecture/</link>
-      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
+      <pubDate>Fri, 26 Sep 2025 07:54:52 +0100</pubDate>
       <guid>https://fredericogago.github.io/frederico-gago/tags/clean-architecture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>FastAPI</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/fastapi/</link>
+      <pubDate>Fri, 26 Sep 2025 07:54:52 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/fastapi/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/python/</link>
+      <pubDate>Fri, 26 Sep 2025 07:54:52 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SQLAlchemy</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/sqlalchemy/</link>
+      <pubDate>Fri, 26 Sep 2025 07:54:52 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/sqlalchemy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Unit of Work</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/unit-of-work/</link>
+      <pubDate>Fri, 26 Sep 2025 07:54:52 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/unit-of-work/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Automação</title>
+      <link>https://fredericogago.github.io/frederico-gago/tags/automa%C3%A7%C3%A3o/</link>
+      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/tags/automa%C3%A7%C3%A3o/</guid>
       <description></description>
     </item>
     <item>
@@ -30,24 +65,10 @@
       <description></description>
     </item>
     <item>
-      <title>FastAPI</title>
-      <link>https://fredericogago.github.io/frederico-gago/tags/fastapi/</link>
-      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/tags/fastapi/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Playwright</title>
       <link>https://fredericogago.github.io/frederico-gago/tags/playwright/</link>
       <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
       <guid>https://fredericogago.github.io/frederico-gago/tags/playwright/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>https://fredericogago.github.io/frederico-gago/tags/python/</link>
-      <pubDate>Thu, 11 Sep 2025 15:47:39 +0100</pubDate>
-      <guid>https://fredericogago.github.io/frederico-gago/tags/python/</guid>
       <description></description>
     </item>
     <item>
