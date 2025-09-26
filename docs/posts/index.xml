@@ -9,11 +9,11 @@
     <lastBuildDate>Fri, 26 Sep 2025 07:54:52 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox</title>
+      <title>Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox</title>
       <link>https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/</link>
       <pubDate>Fri, 26 Sep 2025 07:54:52 +0100</pubDate>
       <guid>https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/</guid>
-      <description>Como desenhei um UoW assíncrono e escalável com SQLAlchemy: fronteira transacional explícita, nesting com savepoints, outbox transacional, idempotência, e um gestor que funciona em API, CLI e workers.</description>
+      <description>How I designed an asynchronous, scalable UoW with SQLAlchemy: explicit transaction boundary, nesting with savepoints, transactional outbox, idempotency, and a manager that works across API, CLI, and workers.</description>
     </item>
     <item>
       <title>Reconciliação Automática de Contribuições (ERP ↔ Portal) com Python</title>

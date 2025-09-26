@@ -5,9 +5,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox | Frederico Gago – Tech Blog</title>
-<meta name="keywords" content="Python, SQLAlchemy, FastAPI, Clean Architecture, Unit of Work, Arquitetura">
-<meta name="description" content="Como desenhei um UoW assíncrono e escalável com SQLAlchemy: fronteira transacional explícita, nesting com savepoints, outbox transacional, idempotência, e um gestor que funciona em API, CLI e workers.">
+<title>Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox | Frederico Gago – Tech Blog</title>
+<meta name="keywords" content="Python, SQLAlchemy, FastAPI, Clean Architecture, Unit of Work, Architecture">
+<meta name="description" content="How I designed an asynchronous, scalable UoW with SQLAlchemy: explicit transaction boundary, nesting with savepoints, transactional outbox, idempotency, and a manager that works across API, CLI, and workers.">
 <meta name="author" content="Frederico Gago">
 <link rel="canonical" href="https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/">
 <link crossorigin="anonymous" href="https://fredericogago.github.io/frederico-gago/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
@@ -57,8 +57,8 @@
     </style>
 </noscript><meta property="og:url" content="https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/">
   <meta property="og:site_name" content="Frederico Gago – Tech Blog">
-  <meta property="og:title" content="Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox">
-  <meta property="og:description" content="Como desenhei um UoW assíncrono e escalável com SQLAlchemy: fronteira transacional explícita, nesting com savepoints, outbox transacional, idempotência, e um gestor que funciona em API, CLI e workers.">
+  <meta property="og:title" content="Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox">
+  <meta property="og:description" content="How I designed an asynchronous, scalable UoW with SQLAlchemy: explicit transaction boundary, nesting with savepoints, transactional outbox, idempotency, and a manager that works across API, CLI, and workers.">
   <meta property="og:locale" content="en-us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -69,12 +69,12 @@
     <meta property="article:tag" content="FastAPI">
     <meta property="article:tag" content="Clean Architecture">
     <meta property="article:tag" content="Unit of Work">
-    <meta property="article:tag" content="Arquitetura">
+    <meta property="article:tag" content="Architecture">
     <meta property="og:image" content="https://fredericogago.github.io/frederico-gago/images/cover/uow-cover.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://fredericogago.github.io/frederico-gago/images/cover/uow-cover.png">
-<meta name="twitter:title" content="Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox">
-<meta name="twitter:description" content="Como desenhei um UoW assíncrono e escalável com SQLAlchemy: fronteira transacional explícita, nesting com savepoints, outbox transacional, idempotência, e um gestor que funciona em API, CLI e workers.">
+<meta name="twitter:title" content="Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox">
+<meta name="twitter:description" content="How I designed an asynchronous, scalable UoW with SQLAlchemy: explicit transaction boundary, nesting with savepoints, transactional outbox, idempotency, and a manager that works across API, CLI, and workers.">
 
 
 <script type="application/ld+json">
@@ -91,7 +91,7 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox",
+      "name": "Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox",
       "item": "https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/"
     }
   ]
@@ -101,11 +101,11 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox",
-  "name": "Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox",
-  "description": "Como desenhei um UoW assíncrono e escalável com SQLAlchemy: fronteira transacional explícita, nesting com savepoints, outbox transacional, idempotência, e um gestor que funciona em API, CLI e workers.",
+  "headline": "Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox",
+  "name": "Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox",
+  "description": "How I designed an asynchronous, scalable UoW with SQLAlchemy: explicit transaction boundary, nesting with savepoints, transactional outbox, idempotency, and a manager that works across API, CLI, and workers.",
   "keywords": [
-    "Python", "SQLAlchemy", "FastAPI", "Clean Architecture", "Unit of Work", "Arquitetura"
+    "Python", "SQLAlchemy", "FastAPI", "Clean Architecture", "Unit of Work", "Architecture"
   ],
   "articleBody": "Building a Production-Grade Unit of Work (UoW) System in Python with SQLAlchemy When you build complex applications with databases, services, and background jobs, you eventually run into the transaction problem:\nHow do I guarantee all operations happen atomically? How do I handle nested scopes (reuse vs rollback)? How do I ensure events are only published once? How do I protect against duplicate commits when retries happen? The solution is a Unit of Work (UoW) system — a design pattern that wraps all your persistence operations in a clear, explicit transaction boundary.\nIn this post, I’ll show you how I built a production-grade UoW system in Python 3.13 using async SQLAlchemy, with:\nExplicit transaction boundaries Safe nesting (reuse vs savepoint) Read-only transactions Transactional outbox for events Idempotency key protection Great testing story 🚨 The Problem: Repos Without Boundaries A naive service might look like this:\nuser = await user_repo.create(User(...)) order = await order_repo.create(Order(...)) await email_service.send_order_confirmation(order) But what if the order commit fails while the email has already been sent? You’ve just created an inconsistent state.\nWithout a transaction boundary, repositories can be called arbitrarily, leading to partial failures and ghost side effects.\n✅ The Solution: Unit of Work + Manager The UoW system enforces a strict rule:\n👉 All repos must be accessed through a UoW scope.\nA service now looks like this:\nasync with uow_manager.enter(mode=UoWMode.REUSE) as uow: user = await uow.repos.user.create(User(...)) order = await uow.repos.order.create(Order(...)) uow.add_event(\"order.created\", {\"order_id\": order.id}) At the end of the scope:\nIf everything succeeded → commit. If something failed → rollback. Events are persisted only on outermost commit. 🧑‍💻 The Code SqlAlchemyUoWBase This is the core UoW implementation. It wraps an AsyncSession, tracks events and idempotency keys, and handles nesting rules.\nclass SqlAlchemyUoWBase[IRepos](IUnitOfWork[IRepos]): \"\"\"Unit-of-Work facade with nesting support (reuse vs savepoint).\"\"\" def __init__( self, session: AsyncSession, level: int, *, read_only: bool = False, event_sink: EventSink, idem_box: IdemBox, ) -\u003e None: self._s = session self._level = level self._read_only = read_only self._active = True self._tx = None self._events = event_sink self._idem_box = idem_box self._repos: IRepos | None = None ... UoWManager The manager ensures that:\nSessions are reused across nested scopes Events/idempotency are shared at all levels Commit/rollback/close are coordinated correctly class UoWManager[UowBaseT, IRepos](IUoWManager): \"\"\"Creates UoW scopes over a shared AsyncSession with nesting support.\"\"\" @asynccontextmanager async def enter(self, *, mode: UoWMode = UoWMode.REUSE, read_only: bool = False): mark_enter(self._label) try: if self._session is None: self._session = self._sf() self._event_sink = EventSink(items=[]) self._idem_box = IdemBox() level = len(self._stack) + 1 nested = level \u003e 1 and mode is UoWMode.SAVEPOINT start_tx = (level == 1) or nested uow = self._uow_cls( self._session, level, read_only=read_only, event_sink=self._event_sink, idem_box=self._idem_box, ) uow.set_repos(self._repo_factory(self._session)) self._stack.append(uow) await uow.start(start_tx=start_tx) try: yield uow await uow.commit(started_tx=start_tx) except Exception: await uow.rollback(started_tx=start_tx) raise finally: self._stack.pop() if not self._stack: await self._session.close() self._session = None self._event_sink = None self._idem_box = None finally: mark_exit(self._label) 🔄 Visual Flow Outermost Transaction (Level 1) BEGIN TRANSACTION ... repo operations ... COMMIT → Flush outbox → Persist idempotency key Nested Reuse (Level \u003e 1, REUSE) (no BEGIN, reuse outer tx) ... repo operations ... (no COMMIT, outer decides) Nested Savepoint (Level \u003e 1, SAVEPOINT) BEGIN NESTED (savepoint) ... repo operations ... RELEASE SAVEPOINT 📦 Events + Idempotency Both inner and outer scopes share the same sinks:\nEventSink → events are buffered and only persisted to the outbox table on the outermost commit IdemBox → idempotency key ensures retries don’t double-commit uow.add_event(\"user.created\", {\"id\": 123}) uow.set_idempotency_key(\"req-uuid\") # Outer commit persists: # - Outbox row # - Idempotency key row 📊 Quick Comparison Mode Behavior Use Case OUTERMOST Starts real transaction, commits, flushes events Normal service call REUSE Shares outer transaction, no BEGIN/COMMIT Helpers that must be atomic with parent SAVEPOINT Creates nested savepoint, rollback safe Risky operations (e.g., optional steps) 🧪 Testing with Fake UoWManager One of the biggest benefits of this design is that you can easily fake the UoW in tests.\nInstead of creating a real SQLAlchemy session, you inject in-memory repositories.\nFake Manager Example class FakeConfigRepo(IConfigRepo): def __init__(self): self.items = [] async def get_configurations_by_group_name(self, group_name): return [i for i in self.items if i.group == group_name] class FakeRepos(IConfigRepos): def __init__(self): self._config = FakeConfigRepo() @property def config(self) -\u003e IConfigRepo: return self._config class FakeUoW(IUnitOfWork[FakeRepos]): def __init__(self): self._repos = FakeRepos() self._active = True @property def repos(self) -\u003e FakeRepos: return self._repos async def commit(self, *, started_tx: bool) -\u003e None: ... async def rollback(self, *, started_tx: bool) -\u003e None: ... async def close(self) -\u003e None: ... def add_event(self, *, event_type: str, payload: dict) -\u003e None: ... def set_idempotency_key(self, key: str | None) -\u003e None: ... @property def level(self) -\u003e int: return 1 @property def is_active(self) -\u003e bool: return self._active class FakeUoWManager(IUoWManager): async def enter(self, *, mode=UoWMode.REUSE, read_only=False): uow = FakeUoW() yield uow Example Test async def test_get_configs_returns_items(): mgr = FakeUoWManager() async with mgr.enter() as uow: uow.repos.config.items.append(ConfigItem(group=\"general\", key=\"x\", value=\"1\")) service = ConfigService(uow.repos.config) result = await service.get_configurations_by_group_name(\"general\") assert result.is_ok() assert len(result.unwrap()) == 1 This way:\nNo database required No transactions opened Service logic is testable in isolation ⚡ Performance Notes One subtle advantage of this design is control over transaction cost.\nREUSE mode is the fastest:\nNo new transaction, no savepoint, no roundtrips. Best when nested operations are always safe to run under the parent scope. SAVEPOINT mode adds overhead:\nEach savepoint requires SQL roundtrips (SAVEPOINT, ROLLBACK TO, RELEASE). Use it when you need to isolate risky steps without aborting the entire parent transaction. Example rule of thumb:\nUse REUSE for 95% of nested calls (normal service-to-service collaboration). Use SAVEPOINT sparingly (e.g., optional third-party calls, best-effort cleanups). This balance keeps transactions fast, predictable, and resilient.\n🏁 Closing Thoughts The Unit of Work pattern is not just a persistence abstraction. It’s a contract:\nEvery service runs inside a transaction. Events are only published if the transaction commits. Duplicate commits are prevented with idempotency. With this system, my services are safer, my tests are easier, and my architecture is cleaner.\nIn asynchronous apps built with SQLAlchemy + FastAPI, a combination of UoW Manager + UoW Base delivers safety, testability, and a clean architecture.\n💬 Do you prefer implicit context (via contextvars) or explicit scopes like this? Share your thoughts!\nLinkedIn GitHub ",
   "wordCount" : "1009",
@@ -196,17 +196,17 @@
   <header class="post-header">
     <div class="breadcrumbs"><a href="https://fredericogago.github.io/frederico-gago/">Home</a>&nbsp;»&nbsp;<a href="https://fredericogago.github.io/frederico-gago/posts/">Blog</a></div>
     <h1 class="post-title entry-hint-parent">
-      Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox
+      Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox
     </h1>
     <div class="post-description">
-      Como desenhei um UoW assíncrono e escalável com SQLAlchemy: fronteira transacional explícita, nesting com savepoints, outbox transacional, idempotência, e um gestor que funciona em API, CLI e workers.
+      How I designed an asynchronous, scalable UoW with SQLAlchemy: explicit transaction boundary, nesting with savepoints, transactional outbox, idempotency, and a manager that works across API, CLI, and workers.
     </div>
     <div class="post-meta"><span title='2025-09-26 07:54:52 +0100 WEST'>September 26, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Frederico Gago
 
 </div>
   </header> 
 <figure class="entry-cover">
-        <img loading="eager" src="https://fredericogago.github.io/frederico-gago/images/cover/uow-cover.png" alt="Diagrama conceptual de um Unit of Work com camadas de aplicação e persistência">
+        <img loading="eager" src="https://fredericogago.github.io/frederico-gago/images/cover/uow-cover.png" alt="Conceptual diagram of a Unit of Work with application and persistence layers">
         
 </figure>
   <div class="post-content"><h1 id="building-a-production-grade-unit-of-work-uow-system-in-python-with-sqlalchemy">Building a Production-Grade Unit of Work (UoW) System in Python with SQLAlchemy<a hidden class="anchor" aria-hidden="true" href="#building-a-production-grade-unit-of-work-uow-system-in-python-with-sqlalchemy">#</a></h1>
@@ -498,7 +498,7 @@ Share your thoughts!</p>
       <li><a href="https://fredericogago.github.io/frederico-gago/tags/fastapi/">FastAPI</a></li>
       <li><a href="https://fredericogago.github.io/frederico-gago/tags/clean-architecture/">Clean Architecture</a></li>
       <li><a href="https://fredericogago.github.io/frederico-gago/tags/unit-of-work/">Unit of Work</a></li>
-      <li><a href="https://fredericogago.github.io/frederico-gago/tags/arquitetura/">Arquitetura</a></li>
+      <li><a href="https://fredericogago.github.io/frederico-gago/tags/architecture/">Architecture</a></li>
     </ul>
 <nav class="paginav">
   <a class="next" href="https://fredericogago.github.io/frederico-gago/posts/reconciliacao-contribuicoes-erp-portal-python/">

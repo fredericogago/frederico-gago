@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Persistence on Frederico Gago – Tech Blog</title>
-    <link>https://fredericogago.github.io/frederico-gago/categories/persistence/</link>
-    <description>Recent content in Persistence on Frederico Gago – Tech Blog</description>
+    <title>Architecture on Frederico Gago – Tech Blog</title>
+    <link>https://fredericogago.github.io/frederico-gago/tags/architecture/</link>
+    <description>Recent content in Architecture on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 26 Sep 2025 07:54:52 +0100</lastBuildDate>
-    <atom:link href="https://fredericogago.github.io/frederico-gago/categories/persistence/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://fredericogago.github.io/frederico-gago/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox</title>
       <link>https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/</link>

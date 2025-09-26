@@ -1,15 +1,15 @@
 +++
-title = "Unit of Work (UoW) em Python com SQLAlchemy: transações explícitas, savepoints e outbox"
+title = "Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox"
 date = 2025-09-26T07:54:52+01:00
 draft = false
-description = "Como desenhei um UoW assíncrono e escalável com SQLAlchemy: fronteira transacional explícita, nesting com savepoints, outbox transacional, idempotência, e um gestor que funciona em API, CLI e workers."
-tags = ["Python", "SQLAlchemy", "FastAPI", "Clean Architecture", "Unit of Work", "Arquitetura"]
+description = "How I designed an asynchronous, scalable UoW with SQLAlchemy: explicit transaction boundary, nesting with savepoints, transactional outbox, idempotency, and a manager that works across API, CLI, and workers."
+tags = ["Python", "SQLAlchemy", "FastAPI", "Clean Architecture", "Unit of Work", "Architecture"]
 categories = ["Engineering", "Architecture", "Persistence"]
 slug = "uow-sqlalchemy-python"
 
 [cover]
 image = "images/cover/uow-cover.png"
-alt = "Diagrama conceptual de um Unit of Work com camadas de aplicação e persistência"
+alt = "Conceptual diagram of a Unit of Work with application and persistence layers"
 +++
 
 # Building a Production-Grade Unit of Work (UoW) System in Python with SQLAlchemy
