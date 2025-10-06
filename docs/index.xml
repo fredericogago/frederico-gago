@@ -6,8 +6,15 @@
     <description>Recent content on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Sep 2025 07:54:52 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 06 Oct 2025 18:55:59 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Handle Microservice Failures: The Ambiguous Timeout Dilemma</title>
+      <link>https://fredericogago.github.io/frederico-gago/posts/microservices-resilience-timeout/</link>
+      <pubDate>Mon, 06 Oct 2025 18:55:59 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/posts/microservices-resilience-timeout/</guid>
+      <description>When a service call times out and you don’t know what happened — how do you stay correct, consistent, and auditable? Let&amp;#39;s explore resilience, idempotency, and compensation patterns with Python examples.</description>
+    </item>
     <item>
       <title>Unit of Work (UoW) in Python with SQLAlchemy: explicit transactions, savepoints, and outbox</title>
       <link>https://fredericogago.github.io/frederico-gago/posts/uow-sqlalchemy-python/</link>

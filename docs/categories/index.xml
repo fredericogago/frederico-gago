@@ -6,8 +6,15 @@
     <description>Recent content in Categories on Frederico Gago – Tech Blog</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Sep 2025 07:54:52 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 06 Oct 2025 18:55:59 +0100</lastBuildDate>
     <atom:link href="https://fredericogago.github.io/frederico-gago/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software Architecture</title>
+      <link>https://fredericogago.github.io/frederico-gago/categories/software-architecture/</link>
+      <pubDate>Mon, 06 Oct 2025 18:55:59 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/categories/software-architecture/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Architecture</title>
       <link>https://fredericogago.github.io/frederico-gago/categories/architecture/</link>

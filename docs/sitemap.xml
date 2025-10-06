@@ -2,40 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fredericogago.github.io/frederico-gago/posts/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/clean-architecture/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/distributed-systems/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/fastapi/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/posts/microservices-resilience-timeout/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/microservices/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/python/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/resilience/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/categories/software-architecture/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
+    <loc>https://fredericogago.github.io/frederico-gago/tags/</loc>
+    <lastmod>2025-10-06T18:55:59+01:00</lastmod>
+  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/categories/architecture/</loc>
     <lastmod>2025-09-26T07:54:52+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/architecture/</loc>
     <lastmod>2025-09-26T07:54:52+01:00</lastmod>
   </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/posts/</loc>
-    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/categories/</loc>
-    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/clean-architecture/</loc>
-    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
-  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/categories/engineering/</loc>
-    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/fastapi/</loc>
-    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/</loc>
     <lastmod>2025-09-26T07:54:52+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/categories/persistence/</loc>
     <lastmod>2025-09-26T07:54:52+01:00</lastmod>
   </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/python/</loc>
-    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
-  </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/sqlalchemy/</loc>
-    <lastmod>2025-09-26T07:54:52+01:00</lastmod>
-  </url><url>
-    <loc>https://fredericogago.github.io/frederico-gago/tags/</loc>
     <lastmod>2025-09-26T07:54:52+01:00</lastmod>
   </url><url>
     <loc>https://fredericogago.github.io/frederico-gago/tags/unit-of-work/</loc>

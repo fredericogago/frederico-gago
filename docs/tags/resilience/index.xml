@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Resilience on Frederico Gago – Tech Blog</title>
+    <link>https://fredericogago.github.io/frederico-gago/tags/resilience/</link>
+    <description>Recent content in Resilience on Frederico Gago – Tech Blog</description>
+    <generator>Hugo -- 0.147.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 06 Oct 2025 18:55:59 +0100</lastBuildDate>
+    <atom:link href="https://fredericogago.github.io/frederico-gago/tags/resilience/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Handle Microservice Failures: The Ambiguous Timeout Dilemma</title>
+      <link>https://fredericogago.github.io/frederico-gago/posts/microservices-resilience-timeout/</link>
+      <pubDate>Mon, 06 Oct 2025 18:55:59 +0100</pubDate>
+      <guid>https://fredericogago.github.io/frederico-gago/posts/microservices-resilience-timeout/</guid>
+      <description>When a service call times out and you don’t know what happened — how do you stay correct, consistent, and auditable? Let&amp;#39;s explore resilience, idempotency, and compensation patterns with Python examples.</description>
+    </item>
+  </channel>
+</rss>

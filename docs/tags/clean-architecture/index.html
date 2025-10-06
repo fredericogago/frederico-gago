@@ -135,6 +135,30 @@
 
 <article class="post-entry tag-entry"> 
 <figure class="entry-cover">
+        <img loading="lazy" src="https://fredericogago.github.io/frederico-gago/images/cover/microservices-resilience-diagram.png" alt="Microservices Resilience Cover Image">
+</figure>
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">How to Handle Microservice Failures: The Ambiguous Timeout Dilemma
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>🧩 The Classic Problem: When a Service Doesn’t Respond Imagine the following flow in a service-oriented system:
+Client → the-api → the-upstream → Database 1️⃣ The client calls the-api/v1/test
+2️⃣ the-api calls the-upstream
+3️⃣ the-upstream writes data into its own database
+4️⃣ It replies OK to the-api
+5️⃣ the-api stores the result in its database and replies OK to the client
+Everything works fine — until step 4 (D) fails because of a network partition or timeout.
+Now, the-api doesn’t know if the upstream actually wrote the data or not.
+You can’t safely commit your local write — and you can’t confidently reply to the client.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-10-06 18:55:59 +0100 WEST'>October 6, 2025</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Frederico Gago</footer>
+  <a class="entry-link" aria-label="post link to How to Handle Microservice Failures: The Ambiguous Timeout Dilemma" href="https://fredericogago.github.io/frederico-gago/posts/microservices-resilience-timeout/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+<figure class="entry-cover">
         <img loading="lazy" src="https://fredericogago.github.io/frederico-gago/images/cover/uow-cover.png" alt="Conceptual diagram of a Unit of Work with application and persistence layers">
 </figure>
   <header class="entry-header">
